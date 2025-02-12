@@ -1,0 +1,17 @@
+#wrapper{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    -webkit-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    touch-action: none;
+}
+
+.form-range::-webkit-slider-thumb{
+    background: var(--yellow);
+}
+
+button{
+    float: right;
+}

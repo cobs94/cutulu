@@ -1,0 +1,19 @@
+.container {
+    text-align: center;
+    display: block;
+    border-bottom: none;
+    position: relative;
+}
+
+.list {
+    padding: 15px;
+}
+
+.list:after {
+    content: "";
+    background: -webkit-linear-gradient(left, rgb(92 7 52 / 0%) 0%, rgb(255 220 105) 47%, rgb(83 0 30 / 0%) 100%);
+    display: block;
+    height: 3px;
+    position: relative;
+    top: 0px;
+}

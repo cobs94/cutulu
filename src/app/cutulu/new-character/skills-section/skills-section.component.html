@@ -1,0 +1,81 @@
+<form [formGroup]="skillsForm" (submit)="saveOccupationSkills()">
+  @if (!showOccupationForm) {
+    <p *ngIf="!custom">Puntos de Interes: {{intelligencePoints}}</p>
+    <div formGroupName="interestPointsForm">
+      <div class="mb-3 formWrapper">
+        @for (item of ( allSkills | keyvalue:unsorted); track $index) {
+          <div class="fieldWrapper">
+            <label for="{{item.key}}Interest" class="form-label">{{item.key | skillsPipe}}: {{item.value}}</label>
+            <div class="box">
+              <div class="box-inner">
+                <input type="number" class="form-control" id="{{item.key}}Interest" [formControlName]="$index">
+              </div>
+            </div>
+            <div class="text-danger" *ngIf="interestPointsForm.at($index).errors">
+              Los puntos base mas los que añades no pueden ser mayor de 100.
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+    @if (interestPointsForm.errors) {
+      <p>No puedes poner más puntos de los que tienes</p>
+    }
+    
+    <label for="customInterest" class="form-label">Añade una habilidad extra:</label>
+    <div class="box mb-3">
+      <div class="box-inner">
+        <input type="text" class="form-control" id="customInterest" formControlName="customInterest">
+      </div>
+    </div>
+
+    <button class="mb-3" (click)="saveCustomSkills()">Añadir habilidad</button>
+    
+    @if (!interestPointsForm.errors) {
+      <div class="nextBtn">
+        <button (click)="savePersonalSkills()">Siguiente</button>
+      </div> 
+    }
+
+  }@else {
+    <div formGroupName="occupationPointsForm" *ngIf="!custom">
+      <p>Puntos de ocupacion: {{occupationPoints}}</p>
+      <div class="mb-3 formWrapper">
+        <ng-container  *ngFor="let skill of this.availableTypeSkills | keyvalue: unsorted ">
+          <div formGroupName="{{skill.key}}" id="{{skill.key}}">
+            <ng-container  *ngFor="let item of skill.value; index as i; first as isFirst">
+                @if (isFirst) {
+                  <h1 *ngIf="isFirst">Añade los puntos a {{item}} clase(s)</h1>
+                }@else { 
+                  <div class="fieldWrapper">
+                    <label for="{{item}}Occupation" class="form-label">{{item | skillsPipe}}: {{allSkills[item]}}</label>
+                    <div class="box">
+                      <div class="box-inner">
+                        <input type="number" class="form-control" id="{{item}}Occupation" formControlName="{{ item }}Occupation">
+                      </div>
+                    </div>
+                    <div class="text-danger" *ngIf="skillsForm.get('occupationPointsForm')?.get(skill.key)?.get(item + 'Occupation')?.errors">
+                      Los puntos base mas los que añades no pueden ser mayor de 100.
+                    </div> 
+                  </div>
+                }
+            </ng-container>
+          </div>  
+        </ng-container>
+      </div>
+      <div class="text-danger" *ngIf="occupationSkill.errors || interpersonalSkills.errors || extraSkills.errors || personalSkills.errors">
+        Solo puedes añadir puntos a las clases que te indiquen en cada bloque.
+      </div> 
+
+      @if (occupationPointsForm.errors) {
+        <p>No puedes poner más puntos de los que tienes</p>
+      }
+      @if (occupationPointsForm.valid && interestPointsForm.valid ) {
+        <div class="nextBtn">
+          <button type="submit">Siguiente</button>
+        </div>
+      }
+    </div>
+  }
+
+</form>

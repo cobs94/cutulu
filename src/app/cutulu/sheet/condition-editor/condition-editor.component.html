@@ -1,0 +1,20 @@
+<div class="triple-deco-container container">
+    <div class="triple-deco-content">
+        <div id="wrapperCon">
+            @if (conditionName) {
+                <h3>Eliminar {{conditionName}}</h3>
+                <button (click)="saveCondition(true)">Si</button>
+                <button (click)="saveCondition(false)">No</button>
+            }@else {
+                <h3>Añadir condición</h3>
+                <label for="condition"></label>
+                <input class="mb-3" type="text" id="condition" [(ngModel)]="condition">
+                <button (click)="saveCondition(true)">Aceptar</button>
+                <button (click)="saveCondition(false)">Cancelar</button> 
+            }
+        </div>
+    </div>
+    <div class="triple-deco-tall"></div>
+    <div class="triple-deco-mid"></div>
+    <div class="triple-deco-wide"></div>
+</div>

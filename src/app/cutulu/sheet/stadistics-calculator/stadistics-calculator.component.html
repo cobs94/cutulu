@@ -1,0 +1,36 @@
+<div class="triple-deco-container container">
+    <div class="triple-deco-content">
+        <div id="wrapperCalc">
+            <form [formGroup]="statsForm">
+                <label for="affectedStat" class="form-label">{{ titleText }}</label>
+                <div class="chckBox">
+                    <input type="checkbox" class="form-check" id="isThrow" formControlName="isThrow" *ngIf="statClicked === 'sanity'">
+                    <label for="isThrow" *ngIf="statClicked === 'sanity'">Es tirada de cordura</label>
+                </div>
+            
+                <ng-container *ngIf="statClicked === 'sanity' && statsForm.get('isThrow')?.value; else affectedStatTemplate">
+                    <label for="dice" class="form-label">Qué dado tirar</label>
+                    <select name="dice" id="dice" class="mb-3" formControlName="dice">
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="6">6</option>
+                        <option value="8">8</option>
+                        <option value="10">10</option>
+                        <option value="100">100</option>
+                    </select>
+                </ng-container>
+            
+                <ng-template #affectedStatTemplate>
+                    <input type="number" class="mb-3" id="affectedStat" formControlName="affectedStat">
+                    <p *ngIf="formError" [innerHTML]="errorText"></p>
+                    <button (click)="add()">Sumar</button>
+                </ng-template>
+                <button (click)="rest()">Restar</button>
+            </form>
+        </div>
+    </div>
+    <div class="triple-deco-tall"></div>
+    <div class="triple-deco-mid"></div>
+    <div class="triple-deco-wide"></div>
+</div>

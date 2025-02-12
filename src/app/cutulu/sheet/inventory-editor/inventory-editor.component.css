@@ -1,0 +1,26 @@
+#wrapperInv{
+    color: white;
+    padding: 30px 0;
+    text-align: center;
+    width: 300px;
+    z-index: 999;
+    position: relative;
+}
+
+#wrapperInv form{
+    display: flex;
+    flex-direction: column;
+}
+
+#wrapperInv button{
+    margin-bottom: 3px;
+}
+
+.container{
+    width: auto;
+}
+
+
+.chckBox{
+    justify-content: center;
+}

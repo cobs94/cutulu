@@ -1,0 +1,24 @@
+#wrapperCombat{
+    color: white;
+    padding: 30px 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    z-index: 999;
+    position: relative;
+}
+
+#wrapperCombat button{
+    margin-bottom: 3px;
+}
+
+.container{
+    width: auto;
+}
+
+.result{
+    background-color: var(--yellow);
+    color: #252525;
+    padding: 10px 0;
+}

@@ -1,0 +1,261 @@
+#navbar{
+    display: flex;
+    position: fixed;
+    width: 100%;
+    background-color: #252525;
+}
+
+#navbar div {
+    width: 20%;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.activeTab::after{
+    content: "";
+    background: -webkit-linear-gradient(left, rgb(92 7 52 / 0%) 0%, rgb(255 220 105) 47%, rgb(83 0 30 / 0%) 100%);
+    display: block;
+    height: 3px;
+    position: relative;
+    top: 3px;
+}
+
+#wrapperBody{
+    padding-top: 60px;
+}
+
+#datosGenerales, #characteristicsWrapper, #statusWrapper, #conditionWrapper, #skillsWrapper, #gunsWrapper, #fightWrapper, #inventoryWrapper{
+    padding: 20px;
+}
+
+#datosGenerales div ,#characteristicsWrapper div, #statusWrapper div, #conditionWrapper div, #skillsWrapper div, #gunsWrapper div, #fightWrapper div, #inventoryWrapper div{
+    text-align: center;
+}
+
+h3{
+    text-align: center;
+}
+
+#gunsWrapper{
+    overflow-x: auto;
+}
+
+.stat{
+    display: flex;
+    width: 80%;
+}
+
+.stat> div{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.statHard{
+    flex-direction: column;
+    border-left: 1px var(--yellow) solid;
+}
+
+.statHard div{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.statHard div:first-child{
+    border-bottom: 1px solid var(--yellow);
+    margin-top: 2px;
+}
+
+.statHard div p{
+    margin: 0;
+}
+
+#counters {
+    display: flex;
+    flex-flow: wrap;
+}
+
+#counters > div {
+    flex: 0 0 38%;
+    box-sizing: border-box;
+    padding-top: 10px;
+    text-align: center;
+    margin: 6%;
+}
+
+.condition::after{
+    content: "";
+    background: -webkit-linear-gradient(left, rgb(92 7 52 / 0%) 0%, rgb(255 220 105) 47%, rgb(83 0 30 / 0%) 100%);
+    display: block;
+    height: 3px;
+    position: relative;
+    top: 0px;
+}
+
+#characteristics{
+    display: flex;
+    flex-flow: wrap;
+}
+
+.characteristic {
+    width: 33%;
+    justify-items: center;
+    margin-bottom: 15px;
+}
+
+.characteristic p{
+    margin: 0;
+}
+
+#skills {
+    display: flex;
+    flex-flow: wrap;
+}
+
+.skill{
+    display: flex;
+    margin: 15px 0;
+    align-items: center;
+    width: 50%;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.skill p{
+    margin: 0;
+}
+
+.skill .stat{
+    width: 60%;
+}
+
+[type="checkbox"] {
+    vertical-align: middle;
+    margin-left: 10px;
+    display: none;
+}
+
+#fightWrapper .stat{
+    width: 33%;
+}
+
+#fightWrapper .stat p{
+    margin: 0;
+}
+
+#fightWrapper table{
+    text-align: center;
+}
+
+#inventoryWrapper{
+    text-align: center;
+}
+
+.itemWrap{
+    margin-bottom: 6px;
+}
+
+.itemWrap::after{
+    content: "";
+    background: -webkit-linear-gradient(left, rgb(92 7 52 / 0%) 0%, rgb(255 220 105) 47%, rgb(83 0 30 / 0%) 100%);
+    display: block;
+    height: 3px;
+    position: relative;
+    top: 3px;
+}
+
+.itemWrap div{
+    display: flex;
+    justify-content: center;
+}
+
+.itemWrap div p{
+    margin-right: 3px;
+    margin-bottom: 0;
+}
+
+.popupWrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+}
+
+.accordion-item{
+    border: 1px solid var(--yellow);
+}
+
+.accordion-button{
+    background-color: var(--yellow);
+}
+
+.accordion-body{
+    background-color: #252525 !important;
+    color: white;
+}
+
+.accordion-body div p{
+    margin: 0;
+}
+
+.accordion-button:not(.collapsed){
+    color: black;
+}
+
+.accordion-button:focus{
+    box-shadow:none;
+}
+
+table.table.art-deco-div {
+    border-color: transparent;
+    border-collapse: separate;
+}
+
+.table>:not(caption)>*>*{
+    background-color: transparent;
+    color: white;
+}
+
+.invBtns {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.invBtns button{
+   width: 35%;
+}
+
+dices, stadistics-calculator, inventory-editor, combat-dices, condition-editor, level-up{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    z-index: 99;
+}
+
+#popupBackgroud{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #00000082;
+}
+
+

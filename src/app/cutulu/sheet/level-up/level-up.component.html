@@ -1,0 +1,16 @@
+<div class="triple-deco-container container">
+    <div class="triple-deco-content">
+        <div id="wrapperLevel">
+            <h1>Mejorar {{successSkills[currentSkill]}}</h1>
+            <div *ngIf='textResult'>
+                <p [innerHTML]="textResult"></p>
+                <p *ngIf='upgradeNumber != 0'>Mejora: {{upgradeNumber}}</p>
+            </div>
+            <button (click)="upgrade()" *ngIf='!textResult'>Mejorar</button>
+            <button (click)="next()" [innerHTML]="textNext"></button>
+        </div>
+    </div>
+    <div class="triple-deco-tall"></div>
+    <div class="triple-deco-mid"></div>
+    <div class="triple-deco-wide"></div>
+</div>

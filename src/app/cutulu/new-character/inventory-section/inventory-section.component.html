@@ -1,0 +1,96 @@
+<h1>Inventario</h1>
+
+<form [formGroup]="inventoryForm">
+    <label for="newItem" class="form-label">Añade objeto</label>
+    <div class="box mb-3">
+        <div class="box-inner">
+            <input type="text" class="form-control" id="newItem" formControlName="newItem">
+        </div>
+    </div>
+
+    <label for="quantity" class="form-label">Cantidad</label>
+    <div class="box mb-3">
+        <div class="box-inner">
+            <input type="number" class="form-control" id="quantity" formControlName="quantity">
+        </div>
+    </div>
+
+    <div class="chckBox">
+        <input type="checkbox" class="form-check" id="isWeapon" formControlName="isWeapon">
+        <label for="isWeapon">Es arma</label>
+    </div>
+
+    @if (inventoryForm.get('isWeapon')?.value) {
+
+        <label for="skill" class="form-label">Habilidad usada:</label>
+        <div class="box mb-3">
+            <div class="box-inner">
+                <select class="form-select" id="skill" formControlName="skill">
+                    <option value=Pelea>Pelea</option>
+                    <option value="Arma_corta">Arma corta</option>
+                    <option value="Fusil_o_Escopeta">Fusil/Escopeta</option>
+                </select>
+            </div>
+        </div>
+
+        <label for="damage" class="form-label">Daño</label>
+        <div class="box mb-3">
+            <div class="box-inner">
+                <input type="text" class="form-control" id="damage" formControlName="damage">
+            </div>
+        </div>
+
+        <label for="range" class="form-label">Alcance</label>
+        <div class="box mb-3">
+            <div class="box-inner">
+                <input type="text" class="form-control" id="range" formControlName="range">
+            </div>
+        </div>
+
+        <label for="usesRound" class="form-label">Ataques</label>
+        <div class="box mb-3">
+            <div class="box-inner">
+                <input type="number" class="form-control" id="usesRound" formControlName="usesRound">
+            </div>
+        </div>
+
+        <label for="magazine" class="form-label">Munición</label>
+        <div class="box mb-3">
+            <div class="box-inner">
+                <input type="number" class="form-control" id="magazine" formControlName="magazine">
+            </div>
+        </div>
+
+        <label for="malfunction" class="form-label">Avería</label>
+        <div class="box mb-3">
+            <div class="box-inner">
+                <input type="number" class="form-control" id="malfunction" formControlName="malfunction">
+            </div>
+        </div>
+    }
+
+    <button (click)="addItem()" class="greenButton mb-3">Añadir</button>
+</form>
+
+<button (click)="saveInventory()" class="greenButton mb-3">Acabar</button>
+
+<div class="box">
+    <div class="box-inner">
+        @if (isEmpty(inventory)) {
+            <p>Inventario vacio</p>
+        }@else {
+            @for (item of (inventory| keyvalue); track $index) {
+                <div class="item">
+                    <p>{{item.key}} 
+        
+                        @if (item.value != 1){
+                            : {{item.value}}
+                        }
+        
+                    </p> 
+                    <button (click)="deleteItem(item.key)">Borrar</button>
+                </div>
+            }
+        }
+    </div>
+</div>

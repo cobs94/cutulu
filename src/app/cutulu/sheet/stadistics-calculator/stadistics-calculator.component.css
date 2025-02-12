@@ -1,0 +1,25 @@
+#wrapperCalc{
+    color: white;
+    padding: 30px 0;
+    text-align: center;
+    width: 300px;
+    z-index: 999;
+    position: relative;
+}
+
+#wrapperCalc form{
+    display: flex;
+    flex-direction: column;
+}
+
+#wrapperCalc button{
+    margin-bottom: 3px;
+}
+
+.container{
+    width: auto;
+}
+
+.chckBox{
+    justify-content: center;
+}
