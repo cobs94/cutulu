@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Poiret+One');
 
+
 :root {
     --yellow: #ffdc69;
     --dark-yellow: #cda933;
@@ -8,6 +9,13 @@
 @font-face {
     font-family: 'cutulu';
     src: url('assets/Limelight-Regular.ttf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'handwritten';
+    src: url('assets/OoohBaby-Regular.ttf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }

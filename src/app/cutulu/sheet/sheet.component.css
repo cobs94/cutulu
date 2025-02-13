@@ -25,7 +25,7 @@
 }
 
 #datosGenerales, #characteristicsWrapper, #statusWrapper, #conditionWrapper, #skillsWrapper, #gunsWrapper, #fightWrapper, #inventoryWrapper{
-    padding: 20px;
+    padding: 13px 20px;
 }
 
 #datosGenerales div ,#characteristicsWrapper div, #statusWrapper div, #conditionWrapper div, #skillsWrapper div, #gunsWrapper div, #fightWrapper div, #inventoryWrapper div{
@@ -256,6 +256,17 @@ dices, stadistics-calculator, inventory-editor, combat-dices, condition-editor, 
     height: 100vh;
     width: 100vw;
     background-color: #00000082;
+}
+
+.dataBox{
+    margin-bottom: 0;
+}
+
+.dataBox tr td:nth-child(2){
+    text-align: right;
+    font-family: 'handwritten', var(--bs-body-font-family) !important;
+    font-size: 22px;
+    padding-right: 15px;
 }
 
 
