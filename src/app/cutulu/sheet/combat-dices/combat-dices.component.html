@@ -1,0 +1,50 @@
+<div class="triple-deco-container container">
+    <div class="triple-deco-content">
+        <div id="wrapperCombat">
+            @if (totalDamage == 0) {
+                <p>{{resultHit}}</p>
+                <p>{{textResult}}</p>
+                @switch (true) {
+                    @case (advantage > 0) {
+                        <p>Ventaja: {{advantage}}</p>
+                    }
+                    @case (advantage < 0) {
+                        <p>Desventaja: {{advantage}}</p>
+                    }
+                    @case (advantage == 0) {
+                        <p></p>
+                    }
+                }
+                <button (click)="throwDices()">Lanzar</button>
+                <button (click)="changeAdvantage(1)">Añadir ventaja</button>
+                <button (click)="changeAdvantage(-1)">Añadir desventaja</button>
+
+                @if (resultHit != 0 && textResult != 'Fracaso') {
+                    @if (isShotgun) {
+                        <form [formGroup]="rangeForm">
+                            <label for="range">Selecciona rango:</label>
+                            <select name="" id="range" formControlName="range">
+                                <option value="0" selected>10</option>
+                                <option value="1">20</option>
+                                <option value="2">50</option>
+                            </select>
+                        </form>
+                    }
+                    <button (click)="throwDamage()">Tirar daño</button>
+                }
+            }@else {
+                <p>Daño</p>
+                <p class="h6">
+                    ({{resultsDamage.join(' + ')}})
+                </p>
+            
+                <h1 class="result">{{totalDamage}}</h1>
+            }
+        </div>
+    </div>
+    <div class="triple-deco-tall"></div>
+    <div class="triple-deco-mid"></div>
+    <div class="triple-deco-wide"></div>
+</div>
+
+

@@ -1,0 +1,26 @@
+.formWrapper{
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-between;
+}
+
+#occupationSkill, #interpersonalSkills, #extraSkills, #personalSkill{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#occupationSkill h1, #interpersonalSkills h1, #extraSkills h1, #personalSkill h1{
+    width: 100%;
+}
+
+.fieldWrapper{
+    width: 45%;
+    margin: 10px 0px;
+    align-content: end;
+}
+
+.nextBtn{
+    width: 100%;
+    text-align: right;
+}

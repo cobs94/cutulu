@@ -1,0 +1,67 @@
+<div class="triple-deco-container container">
+    <div class="triple-deco-content">
+        <div id="wrapperDices">
+            <p>{{result}}</p>
+        
+            @switch (true) {
+                @case (advantage > 0) {
+                    <p>Ventaja: {{advantage}}</p>
+                }
+                @case (advantage < 0) {
+                    <p>Desventaja: {{advantage}}</p>
+                }
+                @case (advantage == 0) {
+
+                }
+            }
+            <p>
+                {{textResult}}
+            </p>
+
+            <button (click)="throwDices()">Lanzar</button>
+            <button (click)="changeAdvantage(1)">Añadir ventaja</button>
+            <button (click)="changeAdvantage(-1)">Añadir desventaja</button>
+            @if (typeThrow == 'skill') {
+                @if (result != 0 && textResult != '' ) {
+                    <form [formGroup]="luckForm" (submit)="useLuck()">
+                        <label for="luck" class="form-label">Usar suerte</label>
+                        <select class="form-select" id="luck" formControlName="luck">
+            
+                            <option value="noLuck" [selected]="true">No usar suerte</option>
+            
+                            @for (item of luckOptions; track $index) {
+                                <option value={{item}}>Usar suerte para un {{item}}: 
+                                    @switch (item) {
+                                        @case ('exito'){
+                                            {{luckSuccess}}
+                                        }
+                                        @case ('exito dificil'){
+                                            {{luckHardSuccess}}
+                                        }
+                                        @case ('exito extremo'){
+                                            {{luckExtremeSuccess}}
+                                        }
+                                    }
+                                    puntos de suerte</option>
+                            }
+                        </select>
+                        @if (noLuck) {
+                            <div class="text-danger">
+                                No tienes suficiente fuerte
+                            </div>
+                        }
+                        <button type="submit">Usar suerte</button>
+                    </form>
+                }
+            
+                @if (result != 0 && textResult != '' && textResult != 'Fracaso' && textResult != 'Pifia') {
+                    <button (click)="markSuccess()">Marcar como exito</button>
+                }
+            }
+        </div>
+        
+    </div>
+    <div class="triple-deco-tall"></div>
+    <div class="triple-deco-mid"></div>
+    <div class="triple-deco-wide"></div>
+</div>

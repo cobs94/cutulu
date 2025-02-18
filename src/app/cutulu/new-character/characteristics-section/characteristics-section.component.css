@@ -1,0 +1,12 @@
+#buttons{
+    display: flex;
+    flex-direction: column;
+}
+
+button{
+    float: right;
+}
+
+#buttons button{
+    margin-bottom: 15px;
+}

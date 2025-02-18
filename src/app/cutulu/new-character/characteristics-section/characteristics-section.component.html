@@ -1,0 +1,222 @@
+@if(!buttonClicked){
+    <div id="buttons">
+        <button (click)="characteristicsThrow()" >Hacer tiradas</button>
+        <button (click)="characteristicsCustom()">Características personalizadas</button>
+    </div>
+}@else {
+    <h1>Tiradas</h1>
+    <p>Ha repartir entre Fuerza, Destreza, Constitución, Apariencia y Poder</p>
+    <p>{{characteristicsArray['firstThrow']}}</p>
+    <p>Ha repartir entre Inteligencia, Tamaño, Educación</p>
+    <p>{{characteristicsArray['secondThrow']}}</p>
+
+    <form [formGroup]="newCharacterCharacteristicsForm" (submit)="saveCharacteristicsCharacter()">
+        <div formGroupName="characteristicsForm">
+            <div class="mb-3">
+                <label for="strength" class="form-label">Fuerza</label>
+                <div class="box">
+                    <div class="box-inner">
+                        @if (!custom) {
+                            <select class="form-select" aria-label="Default select example" id="strength" formControlName="strength">
+                                @for (item of characteristicsArray['firstThrow']; track $index) {
+                                    <option value={{item}}>{{item}}</option>
+                                }
+                            </select>
+                         }@else {
+                            <input type="number" class="form-control" id="strength" formControlName="strength">
+                         }
+                    </div>
+                </div>
+                <div class="text-danger" *ngIf="hasErrors('characteristicsForm', 'required','strength')">
+                    Fuerza obligatoria
+                </div>
+                <div class="text-danger" *ngIf="hasErrors('characteristicsForm', 'moreThan','strength')">
+                    No puede ser mayor de 100
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="dexterity" class="form-label">Destreza</label>
+                <div class="box">
+                    <div class="box-inner">
+                        @if (!custom) {
+                            <select class="form-select" aria-label="Default select example" id="dexterity" formControlName="dexterity">
+                                @for (item of characteristicsArray['firstThrow']; track $index) {
+                                    <option value={{item}}>{{item}}</option>
+                                }
+                            </select>
+                        }@else {
+                            <input type="number" class="form-control" id="dexterity" formControlName="dexterity">
+                        }
+                    </div>
+                </div>
+                <div class="text-danger" *ngIf="hasErrors('characteristicsForm', 'required','dexterity')">
+                    Destreza obligatoria
+                </div>
+                <div class="text-danger" *ngIf="hasErrors('characteristicsForm', 'moreThan','dexterity')">
+                    No puede ser mayor de 100
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="constitution" class="form-label">Constitución</label>
+                <div class="box">
+                    <div class="box-inner">
+                        @if (!custom) {
+                            <select class="form-select" aria-label="Default select example" id="constitution" formControlName="constitution">
+                                @for (item of characteristicsArray['firstThrow']; track $index) {
+                                    <option value={{item}}>{{item}}</option>
+                                }
+                            </select>
+                        }@else {
+                            <input type="number" class="form-control" id="constitution" formControlName="constitution">
+                        }
+                    </div>
+                </div>
+                <div class="text-danger" *ngIf="hasErrors('characteristicsForm', 'required','constitution')">
+                    Constitución obligatoria
+                </div>
+                <div class="text-danger" *ngIf="hasErrors('characteristicsForm', 'moreThan','constitution')">
+                    No puede ser mayor de 100
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="appearance" class="form-label">Apariencia</label>
+                <div class="box">
+                    <div class="box-inner">
+                        @if (!custom) {
+                            <select class="form-select" aria-label="Default select example" id="appearance" formControlName="appearance">
+                                @for (item of characteristicsArray['firstThrow']; track $index) {
+                                    <option value={{item}}>{{item}}</option>
+                                }
+                            </select>
+                        }@else {
+                            <input type="number" class="form-control" id="appearance" formControlName="appearance">
+                        }
+                    </div>
+                </div>
+                <div class="text-danger" *ngIf="hasErrors('characteristicsForm', 'required','appearance')">
+                    Apariencia obligatoria
+                </div>
+                <div class="text-danger" *ngIf="hasErrors('characteristicsForm', 'moreThan','appearance')">
+                    No puede ser mayor de 100
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="power" class="form-label">Poder</label>
+                <div class="box">
+                    <div class="box-inner">
+                        @if (!custom) {
+                            <select class="form-select" aria-label="Default select example" id="power" formControlName="power">
+                                @for (item of characteristicsArray['firstThrow']; track $index) {
+                                    <option value={{item}}>{{item}}</option>
+                                }
+                            </select>
+                        }@else {
+                            <input type="number" class="form-control" id="power" formControlName="power">
+                        }
+                    </div>
+                </div>
+                <div class="text-danger" *ngIf="hasErrors('characteristicsForm', 'required','power')">
+                    Poder obligatorio
+                </div>
+                <div class="text-danger" *ngIf="hasErrors('characteristicsForm', 'moreThan','power')">
+                    No puede ser mayor de 100
+                </div>
+            </div>
+        
+            <div class="mb-3">
+                <label for="intelligence" class="form-label">Inteligencia</label>
+                <div class="box">
+                    <div class="box-inner">
+                        @if (!custom) {
+                            <select class="form-select" aria-label="Default select example" id="intelligence" formControlName="intelligence">
+                                @for (item of characteristicsArray['secondThrow']; track $index) {
+                                    <option value={{item}}>{{item}}</option>
+                                }
+                            </select>
+                        }@else {
+                            <input type="number" class="form-control" id="intelligence" formControlName="intelligence">
+                        }
+                    </div>
+                </div>
+                <div class="text-danger" *ngIf="hasErrors('characteristicsForm', 'required','intelligence')">
+                    Inteligencia obligatoria
+                </div>
+                <div class="text-danger" *ngIf="hasErrors('characteristicsForm', 'moreThan','intelligence')">
+                    No puede ser mayor de 100
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="size" class="form-label">Tamaño</label>
+                <div class="box">
+                    <div class="box-inner">
+                        @if (!custom) {
+                            <select class="form-select" aria-label="Default select example" id="size" formControlName="size">
+                                @for (item of characteristicsArray['secondThrow']; track $index) {
+                                    <option value={{item}}>{{item}}</option>
+                                }
+                            </select>
+                        }@else {
+                            <input type="number" class="form-control" id="size" formControlName="size">
+                        }
+                    </div>
+                </div>
+                <div class="text-danger" *ngIf="hasErrors('characteristicsForm', 'required', 'size')">
+                    Tamaño obligatorio
+                </div>
+                <div class="text-danger" *ngIf="hasErrors('characteristicsForm', 'moreThan','size')">
+                    No puede ser mayor de 100
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="education" class="form-label">Educación</label>
+                <div class="box">
+                    <div class="box-inner">
+                        @if (!custom) {
+                            <select class="form-select" aria-label="Default select example" id="education" formControlName="education">
+                                @for (item of characteristicsArray['secondThrow']; track $index) {
+                                    <option value={{item}}>{{item}}</option>
+                                }
+                            </select>
+                        }@else {
+                            <input type="number" class="form-control" id="education" formControlName="education">
+                        }
+                    </div>
+                </div>
+                <div class="text-danger" *ngIf="hasErrors('characteristicsForm', 'required', 'education')">
+                    Educación obligatorio
+                </div>
+                <div class="text-danger" *ngIf="hasErrors('characteristicsForm', 'moreThan','education')">
+                    No puede ser mayor de 100
+                </div>
+            </div>
+        </div>
+        @if (characteristicsForm.valid && !custom) {
+            <div formGroupName="modByAgeForm" *ngIf="characteristicsModByAge.length != 0">
+                <p>Debido a tu edad tienes que restar un total de {{modCharacteristics}} puntos entre las siguientes características:</p>
+                @for (item of characteristicsModByAge; track $index) {
+                    <div class="mb-3">
+                        <label for="{{ item }}AgeMod" class="form-label">{{ item | translate }}</label>
+                        <div class="box">
+                            <div class="box-inner">
+                                <input type="number" class="form-control" id="{{ item }}AgeMod" formControlName="{{ item }}AgeMod">
+                            </div>
+                        </div>
+                        @if (hasErrors('modByAgeForm', 'moreThan', item +'AgeMod')) {
+                            <p class="text-danger">No te puedes quitar más puntos de los que tienes</p>
+                        }
+                    </div>
+                }
+            </div>
+            @if (modByAgeForm.errors && modByAgeForm.touched){
+                <div class="text-danger">Resta todos los puntos</div>
+            }
+        }
+        <div class="text-danger" *ngIf="characteristicsForm.hasError('noRepeat') && characteristicsForm.get('strength')?.touched && characteristicsForm.get('dexterity')?.touched && characteristicsForm.get('constitution')?.touched && characteristicsForm.get('appearance')?.touched && characteristicsForm.get('power')?.touched && characteristicsForm.get('intelligence')?.touched && characteristicsForm.get('size')?.touched && characteristicsForm.get('education')?.touched">
+            Reparte las tiradas sin repetirlas.
+        </div>
+
+        @if (modByAgeForm.valid && characteristicsForm.valid && characteristicsForm.touched){
+            <button type="submit">Siguiente</button>
+        }
+</form>
+}

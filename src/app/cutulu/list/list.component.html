@@ -1,0 +1,12 @@
+<div id="wrapper">
+    <div class="container">
+        <div class="list">
+            <a href="#" routerLink="/newCharacter">Nuevo personaje</a>
+        </div>
+        @for (character of characters; track $index) {
+            <div class="list">   
+                <a href="#" [routerLink]="['/characters', character]">{{character}}</a>
+            </div>
+        }
+    </div>
+</div>

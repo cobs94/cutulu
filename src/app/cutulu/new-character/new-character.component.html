@@ -1,0 +1,19 @@
+<div class="wrapper">
+    @switch (goToForm) {
+        @case (0) {
+            <data-section (changePage)="changeForm($event)"/>
+        }
+        @case (1) {
+            <app-characteristics (changePage)="changeForm($event[0], $event[1])"/>
+        }
+        @case (2){
+            <skills-section [custom] = custom (changePage)="changeForm($event)"/> 
+        }
+        @case (3){
+            <credits-section (changePage)="changeForm($event)"/> 
+        }
+        @case (4){
+            <inventory-section/>
+        }
+      }
+</div>

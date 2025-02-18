@@ -1,0 +1,13 @@
+<div id="wrapper">
+    <form [formGroup]="creditForm" (submit)="saveCredit()">
+        <label for="customRange3" class="form-label">Elige tu credito</label>
+        <input type="range" class="form-range" min={{minCredit}} max={{maxCredit}} step="1" id="customRange3" formControlName="credit">
+    
+        <p>Dinero: {{money | currency}}</p>
+        <p>Propiedades: {{properties | currency}} </p>
+        <p>Nivel de gasto: {{spendingLevel | currency}}</p>
+    
+        <button type="submit">Siguiente</button>
+    </form>
+</div>
+

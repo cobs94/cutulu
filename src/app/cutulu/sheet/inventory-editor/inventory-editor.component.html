@@ -1,0 +1,48 @@
+<div class="triple-deco-container container">
+    <div class="triple-deco-content">
+        <div id="wrapperInv">
+            <form [formGroup]="inventoryForm">
+                <label for="newItem" class="form-label">Añade objeto</label>
+                <input type="text" class="form-control" id="newItem" formControlName="newItem">
+            
+                <label for="quantity" class="form-label">Cantidad</label>
+                <input type="number" class="form-control" id="quantity" formControlName="quantity">
+                
+                <div class="chckBox">
+                    <input type="checkbox" class="form-check" id="isWeapon" formControlName="isWeapon">
+                    <label for="isWeapon">Es arma</label>
+                </div>
+            
+                @if (inventoryForm.get('isWeapon')?.value) {
+            
+                    <label for="skill" class="form-label">Habilidad usada:</label>
+                    <select class="form-select" id="skill" formControlName="skill">
+                        <option value=Pelea>Pelea</option>
+                        <option value="Arma_corta">Arma corta</option>
+                        <option value="Fusil_o_Escopeta">Fusil/Escopeta</option>
+                    </select>
+            
+                    <label for="damage" class="form-label">Daño</label>
+                    <input type="text" class="form-control" id="damage" formControlName="damage">
+            
+                    <label for="range" class="form-label">Alcance</label>
+                    <input type="text" class="form-control" id="range" formControlName="range">
+            
+                    <label for="usesRound" class="form-label">Ataques</label>
+                    <input type="number" class="form-control" id="usesRound" formControlName="usesRound">
+            
+                    <label for="magazine" class="form-label">Munición</label>
+                    <input type="number" class="form-control" id="magazine" formControlName="magazine">
+            
+                    <label for="malfunction" class="form-label">Avería</label>
+                    <input type="number" class="form-control" id="malfunction" formControlName="malfunction">
+                }
+            </form>
+            
+            <button (click)="saveInventory()">Acabar</button>
+        </div>
+    </div>
+    <div class="triple-deco-tall"></div>
+    <div class="triple-deco-mid"></div>
+    <div class="triple-deco-wide"></div>
+</div>

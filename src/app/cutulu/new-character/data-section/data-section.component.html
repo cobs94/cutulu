@@ -1,0 +1,75 @@
+<form [formGroup]="newCharacterDataForm" (submit)="saveDataCharacters()">
+    <div class="mb-3">
+        <label for="characterName" class="form-label" >Nombre del personaje</label>
+        <div class="box">
+            <div class="box-inner">
+                <input type="text" class="form-control" id="characterName" formControlName="characterName">
+            </div>
+        </div>
+        <div class="text-danger" *ngIf="hasErrors('characterName', 'required')">
+            Nombre obligatorio
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="characterAge" class="form-label">Edad del personaje</label>
+        <div class="box">
+            <div class="box-inner">
+                <input type="text" class="form-control" id="characterAge" formControlName="characterAge">
+            </div>
+        </div>
+        <div class="text-danger" *ngIf="hasErrors('characterAge', 'required')">
+            Edad obligatoria
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="characterOccupation" class="form-label">Profesión del personaje</label>
+        <div class="box">
+            <div class="box-inner">
+                <select id="characterOccupation" formControlName="characterOccupation">
+                    @for (item of occupationList; track $index) {
+                        <option value={{item}}>{{item}}</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="text-danger" *ngIf="hasErrors('characterOccupation', 'required')">
+            Profesión obligatoria
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="characterSex" class="form-label">Sexo del personaje</label>
+        <div class="box">
+            <div class="box-inner">
+                <input type="text" class="form-control" id="characterSex" formControlName="characterSex">
+            </div>
+        </div>
+        <div class="text-danger" *ngIf="hasErrors('characterSex', 'required')">
+            Sexo obligatorio
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="characterResidence" class="form-label">Lugar de residencia del personaje</label>
+        <div class="box">
+            <div class="box-inner">
+                <input type="text" class="form-control" id="characterResidence" formControlName="characterResidence">
+            </div>
+        </div>
+        <div class="text-danger" *ngIf="hasErrors('characterResidence', 'required')">
+            Lugar de residencia obligatorio
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="characterBirthplace" class="form-label">Lugar de nacimiendo del personaje</label>
+        <div class="box">
+            <div class="box-inner">
+                <input type="text" class="form-control" id="characterBirthplace" formControlName="characterBirthplace">
+            </div>
+        </div>
+        <div class="text-danger" *ngIf="hasErrors('characterBirthplace', 'required')">
+            Lugar de nacimiento obligatorio
+        </div>
+    </div>
+    @if (!newCharacterDataForm.invalid && newCharacterDataForm.touched) {
+        <button type="submit">Siguiente</button>
+    }
+</form>
