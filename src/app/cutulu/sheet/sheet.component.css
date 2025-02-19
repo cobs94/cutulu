@@ -287,6 +287,11 @@ level-up {
     text-align: left !important;
 }
 
+.table>:not(caption)>*>*{
+    background-color: #252525;
+    color: white;
+}
+
 .stair-deco-container {
     max-width: 600px;
     margin: auto;

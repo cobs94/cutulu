@@ -1,0 +1,101 @@
+{
+  "configVersion": 1,
+  "timestamp": 1739989477865,
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/favicon.ico",
+        "/index.html",
+        "/main.443407ca428104e7.js",
+        "/manifest.webmanifest",
+        "/polyfills.dc93eb7a844b0bc8.js",
+        "/runtime.915bf7c323fdd356.js",
+        "/scripts.1ac6d0d02f230370.js",
+        "/styles.ef58c11039ea2c22.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/Limelight-Regular.fa8acb3c050cb9c6.ttf",
+        "/OoohBaby-Regular.7291480975a99387.ttf",
+        "/assets/CallofCthulhuLogo.png",
+        "/assets/Cthulhumbus.otf",
+        "/assets/Limelight-Regular.ttf",
+        "/assets/OoohBaby-Regular.ttf",
+        "/assets/art-deco-frame.svg",
+        "/assets/icons/icon-128x128.png",
+        "/assets/icons/icon-144x144.png",
+        "/assets/icons/icon-152x152.png",
+        "/assets/icons/icon-192x192.png",
+        "/assets/icons/icon-384x384.png",
+        "/assets/icons/icon-512x512.png",
+        "/assets/icons/icon-72x72.png",
+        "/assets/icons/icon-96x96.png",
+        "/assets/sky.svg",
+        "/sky.3b325261eac93d49.svg"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/Limelight-Regular.fa8acb3c050cb9c6.ttf": "be438210a409ba7d43cf76055b20d8537810e76e",
+    "/OoohBaby-Regular.7291480975a99387.ttf": "3997e4695803070117a273ae4524ad14b4e2d657",
+    "/assets/CallofCthulhuLogo.png": "bb59504cbc7e35a73b176a4e62c2cbc3bb98051e",
+    "/assets/Cthulhumbus.otf": "f7fd5efd3236115f9a8f6894a6174185f664c443",
+    "/assets/Limelight-Regular.ttf": "be438210a409ba7d43cf76055b20d8537810e76e",
+    "/assets/OoohBaby-Regular.ttf": "3997e4695803070117a273ae4524ad14b4e2d657",
+    "/assets/art-deco-frame.svg": "3d43af3528551041451548c40a32b2e4a1e3e52e",
+    "/assets/icons/icon-128x128.png": "f912963bdc6d5a38d8f1dd0afbaab2ce8d657acb",
+    "/assets/icons/icon-144x144.png": "b155fd5f2fd5d2ea7760721063003c4cd95fd783",
+    "/assets/icons/icon-152x152.png": "eae6e0f0c8afb8aaae339e2a569b43e9238e5e6c",
+    "/assets/icons/icon-192x192.png": "15c4180454633880d98674aa7394656196c91584",
+    "/assets/icons/icon-384x384.png": "94a915751ef6c9282df9aea405ad679230631814",
+    "/assets/icons/icon-512x512.png": "1de182f76f7329dfa8f9fcdd1fdcdd695bea6a99",
+    "/assets/icons/icon-72x72.png": "aa88a6096bd973be7f6d7a5489bfa6bc2463f8c4",
+    "/assets/icons/icon-96x96.png": "7fb8f59c30ce2ff12c700321a0b39e14b3dc8f95",
+    "/assets/sky.svg": "3a0b420356d96e92173403d3941641ba7ef3ff08",
+    "/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
+    "/index.html": "76390fbe7e2f529e15468b54c2f85e0eb0729e15",
+    "/main.443407ca428104e7.js": "2ced53c5a479ea9bb76c537f9142b0a062759359",
+    "/manifest.webmanifest": "ebaf801c4cfc7a8abd155b098e9d9e7405d6623c",
+    "/polyfills.dc93eb7a844b0bc8.js": "e1f7ed65666efd1a812cdb5d3a6d1d591714303e",
+    "/runtime.915bf7c323fdd356.js": "f70b6eb9c469b489fad6a7c4f4e410f541deb725",
+    "/scripts.1ac6d0d02f230370.js": "3e03c7963828ff9539f82dcd788ff3ac916212d2",
+    "/sky.3b325261eac93d49.svg": "3a0b420356d96e92173403d3941641ba7ef3ff08",
+    "/styles.ef58c11039ea2c22.css": "7d2ab5ef09a5b332f46d0b9d0fdbbed3c18c6865"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}

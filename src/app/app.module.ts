@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,6 +11,7 @@ import { SheetComponent } from './cutulu/sheet/sheet.component';
 import { SkillsPipePipe } from "./pipes/skills-pipe.pipe";
 import { NewCharacterComponent } from './cutulu/new-character/new-character.component';
 import { RouterOutlet } from '@angular/router';
+import { ServiceWorkerModule } from '@angular/service-worker';
 @NgModule({
     declarations: [
         AppComponent,
@@ -27,7 +28,13 @@ import { RouterOutlet } from '@angular/router';
         SkillsPipePipe,
         NewCharacterComponent,
         RouterOutlet,
-        SheetComponent
+        SheetComponent,
+        ServiceWorkerModule.register('ngsw-worker.js', {
+          enabled: !isDevMode(),
+          // Register the ServiceWorker as soon as the application is stable
+          // or after 30 seconds (whichever comes first).
+          registrationStrategy: 'registerWhenStable:30000'
+        })
     ]
 })
 export class AppModule { }
