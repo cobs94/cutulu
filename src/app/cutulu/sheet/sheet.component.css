@@ -1,4 +1,4 @@
-#navbar{
+#navbar {
     display: flex;
     position: fixed;
     width: 100%;
@@ -11,53 +11,67 @@
     padding: 10px 0;
 }
 
-.activeTab::after{
+.activeTab::after,
+.condition::after,
+.itemWrap::after {
     content: "";
     background: -webkit-linear-gradient(left, rgb(92 7 52 / 0%) 0%, rgb(255 220 105) 47%, rgb(83 0 30 / 0%) 100%);
     display: block;
     height: 3px;
     position: relative;
-    top: 3px;
 }
 
-#wrapperBody{
+#wrapperBody {
     padding-top: 60px;
+    max-width: 500px;
+    margin: auto;
 }
 
-#datosGenerales, #characteristicsWrapper, #statusWrapper, #conditionWrapper, #skillsWrapper, #gunsWrapper, #fightWrapper, #inventoryWrapper{
+#datosGenerales,
+#characteristicsWrapper,
+#statusWrapper,
+#conditionWrapper,
+#skillsWrapper,
+#gunsWrapper,
+#fightWrapper,
+#inventoryWrapper {
     padding: 13px 20px;
 }
 
-#datosGenerales div ,#characteristicsWrapper div, #statusWrapper div, #conditionWrapper div, #skillsWrapper div, #gunsWrapper div, #fightWrapper div, #inventoryWrapper div{
+#datosGenerales div,
+#characteristicsWrapper div,
+#statusWrapper div,
+#conditionWrapper div,
+#skillsWrapper div,
+#gunsWrapper div,
+#fightWrapper div,
+#inventoryWrapper div,
+h3 {
     text-align: center;
 }
 
-h3{
-    text-align: center;
-}
-
-#gunsWrapper{
+#gunsWrapper {
     overflow-x: auto;
 }
 
-.stat{
+.stat {
     display: flex;
     width: 80%;
 }
 
-.stat> div{
+.stat > div {
     width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.statHard{
+.statHard {
     flex-direction: column;
     border-left: 1px var(--yellow) solid;
 }
 
-.statHard div{
+.statHard div {
     width: 100%;
     height: 50%;
     display: flex;
@@ -65,12 +79,18 @@ h3{
     justify-content: center;
 }
 
-.statHard div:first-child{
+.statHard div:first-child {
     border-bottom: 1px solid var(--yellow);
     margin-top: 2px;
 }
 
-.statHard div p{
+.statHard div p,
+#counters p,
+.count,
+.characteristic p,
+.skill p,
+#fightWrapper .stat p,
+.accordion-body div p {
     margin: 0;
 }
 
@@ -87,36 +107,34 @@ h3{
     margin: 6%;
 }
 
-.condition::after{
-    content: "";
-    background: -webkit-linear-gradient(left, rgb(92 7 52 / 0%) 0%, rgb(255 220 105) 47%, rgb(83 0 30 / 0%) 100%);
-    display: block;
-    height: 3px;
+.countWrapper {
+    border: 2px solid var(--yellow);
+    width: 50px;
+    height: 50px;
     position: relative;
-    top: 0px;
+    margin: auto;
+    top: -17%;
+    background-color: #252525;
+    transform: rotate(-45deg);
+    align-content: center;
 }
 
-#characteristics{
+.countWrapper p {
+    transform: rotate(45deg);
+}
+
+#characteristics,
+#skills {
     display: flex;
     flex-flow: wrap;
 }
 
 .characteristic {
     width: 33%;
-    justify-items: center;
     margin-bottom: 15px;
 }
 
-.characteristic p{
-    margin: 0;
-}
-
-#skills {
-    display: flex;
-    flex-flow: wrap;
-}
-
-.skill{
+.skill {
     display: flex;
     margin: 15px 0;
     align-items: center;
@@ -125,12 +143,8 @@ h3{
     flex-direction: column;
 }
 
-.skill p{
-    margin: 0;
-}
-
-.skill .stat{
-    width: 60%;
+.skill .stat {
+    width: 100%;
 }
 
 [type="checkbox"] {
@@ -139,46 +153,30 @@ h3{
     display: none;
 }
 
-#fightWrapper .stat{
+#fightWrapper .stat {
     width: 33%;
 }
 
-#fightWrapper .stat p{
-    margin: 0;
-}
-
-#fightWrapper table{
+#fightWrapper table,
+#inventoryWrapper {
     text-align: center;
 }
 
-#inventoryWrapper{
-    text-align: center;
-}
-
-.itemWrap{
+.itemWrap {
     margin-bottom: 6px;
 }
 
-.itemWrap::after{
-    content: "";
-    background: -webkit-linear-gradient(left, rgb(92 7 52 / 0%) 0%, rgb(255 220 105) 47%, rgb(83 0 30 / 0%) 100%);
-    display: block;
-    height: 3px;
-    position: relative;
-    top: 3px;
-}
-
-.itemWrap div{
+.itemWrap div {
     display: flex;
     justify-content: center;
 }
 
-.itemWrap div p{
+.itemWrap div p {
     margin-right: 3px;
     margin-bottom: 0;
 }
 
-.popupWrapper{
+.popupWrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -188,29 +186,25 @@ h3{
     width: 100vw;
 }
 
-.accordion-item{
+.accordion-item {
     border: 1px solid var(--yellow);
 }
 
-.accordion-button{
+.accordion-button {
     background-color: var(--yellow);
 }
 
-.accordion-body{
+.accordion-body {
     background-color: #252525 !important;
     color: white;
 }
 
-.accordion-body div p{
-    margin: 0;
-}
-
-.accordion-button:not(.collapsed){
+.accordion-button:not(.collapsed) {
     color: black;
 }
 
-.accordion-button:focus{
-    box-shadow:none;
+.accordion-button:focus {
+    box-shadow: none;
 }
 
 table.table.art-deco-div {
@@ -218,7 +212,7 @@ table.table.art-deco-div {
     border-collapse: separate;
 }
 
-.table>:not(caption)>*>*{
+.table > :not(caption) > * {
     background-color: transparent;
     color: white;
 }
@@ -228,11 +222,16 @@ table.table.art-deco-div {
     justify-content: space-evenly;
 }
 
-.invBtns button{
-   width: 35%;
+.invBtns button {
+    width: 35%;
 }
 
-dices, stadistics-calculator, inventory-editor, combat-dices, condition-editor, level-up{
+dices,
+stadistics-calculator,
+inventory-editor,
+combat-dices,
+condition-editor,
+level-up {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -245,7 +244,7 @@ dices, stadistics-calculator, inventory-editor, combat-dices, condition-editor, 
     z-index: 99;
 }
 
-#popupBackgroud{
+#popupBackgroud {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -258,15 +257,35 @@ dices, stadistics-calculator, inventory-editor, combat-dices, condition-editor, 
     background-color: #00000082;
 }
 
-.dataBox{
+.dataBox {
     margin-bottom: 0;
 }
 
-.dataBox tr td:nth-child(2){
+.dataBox tbody {
+    vertical-align: middle;
+}
+
+.dataBox tr td:nth-child(2) {
     text-align: right;
-    font-family: 'handwritten', var(--bs-body-font-family) !important;
-    font-size: 22px;
     padding-right: 15px;
 }
 
+#datosGenerales .dataBox tr td:nth-child(2) {
+    font-family: 'handwritten', var(--bs-body-font-family) !important;
+    font-size: 22px;
+}
 
+#gunsWrapper .dataBox,
+#fightWrapper .dataBox {
+    text-align: initial;
+}
+
+.dodgeBox {
+    padding: .5rem;
+    text-align: left !important;
+}
+
+.stair-deco-container {
+    max-width: 600px;
+    margin: auto;
+}

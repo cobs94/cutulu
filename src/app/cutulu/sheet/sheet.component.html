@@ -46,28 +46,6 @@
                         <div class="stair-deco-inner-top"></div>
                         <div class="stair-deco-inner-bottom"></div>
                     </div>
-                    <!-- <div class="dataBox">
-                        <div>
-                            <p>Ocupación:</p>
-                            <p class="dataSection">{{character?.data?.occupation}}</p>
-                        </div>
-                        <div>
-                            <p>Género:</p>
-                            <p class="dataSection">{{character?.data?.sex}}</p>
-                        </div>
-                        <div>
-                            <p>Edad:</p>
-                            <p class="dataSection">{{character?.data?.age}}</p>
-                        </div>
-                        <div>
-                            <p>Residencia:</p>
-                            <p class="dataSection">{{character?.data?.residence}}</p>
-                        </div>
-                        <div>
-                            <p>Nacimiento:</p>
-                            <p class="dataSection">{{character?.data?.birthplace}}</p>
-                        </div>
-                    </div> -->
                     <table class="table table-striped table-dark dataBox">
                         <tbody>
                             <tr>
@@ -97,11 +75,6 @@
                             </tr>
                         </tbody>
                     </table>
-                    <!-- <p>Ocupación: {{character?.data?.occupation}}</p>
-                    <p>Género: {{character?.data?.sex}}</p>
-                    <p>Edad: {{character?.data?.age}}</p>
-                    <p>Lugar de residencia: {{character?.data?.residence}}</p>
-                    <p>Lugar de nacimiento: {{character?.data?.birthplace}}</p> -->
                 </div>
                 <div id="characteristicsWrapper">
                     <div class="stair-deco-container mb-3">
@@ -151,8 +124,10 @@
                         <div class="stair-deco-inner-bottom"></div>
                     </div>
                     <div id="counters">
-                        <div class="art-deco-div" *ngFor=" let item of ( character?.stats?.currentStats| keyvalue: unsorted )">
-                            <p>{{item.key|translate}}</p>
+                        <div *ngFor=" let item of ( character?.stats?.currentStats| keyvalue: unsorted )">
+                            <div class="art-deco-div pb-3">
+                                <p>{{item.key|translate}}</p>
+                            </div>
                             <div class="countWrapper" (click)="showCalculatorFunc(item.key, item.value)">
                                 <p class="count">{{item.value}}</p>
                             </div>
@@ -303,12 +278,20 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <div>
-                                    <p>Daño: 1D3+BD</p>
-                                </div>
-                                <div>
-                                    <p>Ataques: 1</p>
-                                </div>
+                                <table class="table table-striped table-dark dataBox">
+                                    <tbody>
+                                        <tr>
+                                            <td>Daño:</td>
+                                            <td>1D3+BD</td>
+                                        
+                                        </tr>
+                                        <tr>
+                                            <td>Ataques:</td>
+                                            <td>1</td>
+                                        
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                           </div>
                         </div>
@@ -342,21 +325,35 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div>
-                                        <p>Daño: {{weapon.damage | spaceReplace}}</p>
-                                    </div>
-                                    <div *ngIf="weapon.range">
-                                        <p>Rango: {{weapon.range}}</p>
-                                    </div>
-                                    <div>
-                                        <p>Ataques: {{weapon.usesRound}}</p>
-                                    </div>
-                                    <div *ngIf="weapon.magazine">
-                                        <p>Munición: {{weapon.magazine}}</p>
-                                    </div>
-                                    <div *ngIf="weapon.malfunction">
-                                        <p>Avería: {{weapon.malfunction}}</p>
-                                    </div>
+                                    <table class="table table-striped table-dark dataBox">
+                                        <tbody>
+                                            <tr>
+                                                <td>Daño:</td>
+                                                <td>{{weapon.damage | spaceReplace}}</td>
+                                            
+                                            </tr>
+                                            <tr *ngIf="weapon.range">
+                                                <td>Rango:</td>
+                                                <td>{{weapon.range}}</td>
+                                            
+                                            </tr>
+                                            <tr>
+                                                <td>Ataques:</td>
+                                                <td>{{weapon.usesRound}}</td>
+                                            
+                                            </tr>
+                                            <tr *ngIf="weapon.magazine">
+                                                <td>Munición:</td>
+                                                <td>{{weapon.magazine}}</td>
+                                            
+                                            </tr>
+                                            <tr *ngIf="weapon.malfunction">
+                                                <td>Avería:</td>
+                                                <td>{{weapon.malfunction}}</td>
+                                            
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -374,12 +371,25 @@
                         <div class="stair-deco-inner-top"></div>
                         <div class="stair-deco-inner-bottom"></div>
                     </div>
-                    <p>Bonif. Daño: {{character?.combat?.damageBonus?.modifyer}}
-                        @if (character?.combat?.damageBonus?.dice != null) {
-                        D{{character?.combat?.damageBonus?.dice}}
-                        }
-                        </p>
-                    <p>Corpulencia: {{character?.combat?.build}}</p>
+                    <table class="table table-striped table-dark dataBox">
+                        <tbody>
+                            <tr>
+                                <td>Bonif. Daño:</td>
+                                <td>{{character?.combat?.damageBonus?.modifyer}}
+                                    @if (character?.combat?.damageBonus?.dice != null) {
+                                        D{{character?.combat?.damageBonus?.dice}}
+                                    }
+                                </td>
+                            
+                            </tr>
+                            <tr>
+                                <td>Corpulencia:</td>
+                                <td>{{character?.combat?.build}}</td>
+                            
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="dodgeBox">
                     <p>Esquivar: </p>
                     <table class="table art-deco-div" (click)="showDicesFunc(allSkills['Esquivar'], 'Esquivar', 'skill')">
                         <thead class="thead-dark">
@@ -397,6 +407,7 @@
                           </tr>
                         </tbody>
                     </table>
+                    </div>
                 </div>
             </div>
         }

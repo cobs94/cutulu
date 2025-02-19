@@ -8,7 +8,7 @@ import { Character } from '../models/character.model';
 })
 export class ApiService{
 
-  private baseURL = 'http://127.0.0.1';
+  private baseURL = 'https://api-cutulu.onrender.com';
 
   private userName:string|null = '';
 
@@ -18,7 +18,7 @@ export class ApiService{
 
      this.userName = name;
 
-    return this._httpClient.get<any>(`${this.baseURL}/api/login?userName=` + name + `&pass=` + pass);
+    return this._httpClient.get<any>(`${this.baseURL}/login.php?userName=` + name + `&pass=` + pass);
   }
 
   public register(name:string, pass:string): Observable <any>{
@@ -28,33 +28,33 @@ export class ApiService{
     };
 
     this.userName = name;
-    return this._httpClient.post<any>(`${this.baseURL}/api/register`, body);
+    return this._httpClient.post<any>(`${this.baseURL}/register.php`, body);
  }
 
   public getCharactersByUser(): Observable <any>{
     this.checkUserName();
-    return this._httpClient.get<any>(`${this.baseURL}/api/characters?userName=`+ this.userName);
+    return this._httpClient.get<any>(`${this.baseURL}/characters.php?userName=`+ this.userName);
   }
 
   public getSheetByCharacter(character:string): Observable <Character>{
-    return this._httpClient.get<Character>(`${this.baseURL}/api/charactersSheet?name=`+ character);
+    return this._httpClient.get<Character>(`${this.baseURL}/charactersSheet.php?name=`+ character);
   }
 
   public getOcupationList(): Observable <String[]>{
-    return this._httpClient.get<String[]>(`${this.baseURL}/api/occupations`);
+    return this._httpClient.get<String[]>(`${this.baseURL}/occupations.php`);
   }
 
   public getProfessionalSkills(occupation:string): Observable <any>{
-    return this._httpClient.get<any>(`${this.baseURL}/api/professionalSkills?occupation=`+ occupation);
+    return this._httpClient.get<any>(`${this.baseURL}/professionalSkills.php?occupation=`+ occupation);
   }
 
   public getCredit(occupation:string): Observable <any>{
-    return this._httpClient.get<any>(`${this.baseURL}/api/credit?occupation=`+ occupation);
+    return this._httpClient.get<any>(`${this.baseURL}/credit.php?occupation=`+ occupation);
   }
 
   public postCharacter(character:string, sheet:Character): Observable <any>{
     this.checkUserName();
-    return this._httpClient.get<any>(`${this.baseURL}/api/saveCharacter?usuario=`+ this.userName + `&personaje=` + character + `&caracteristicas=` + JSON.stringify(sheet));
+    return this._httpClient.get<any>(`${this.baseURL}/saveCharacter.php?usuario=`+ this.userName + `&personaje=` + character + `&caracteristicas=` + JSON.stringify(sheet));
   }
 
   public editCharacter(character:string, sheet:Character): Observable <any>{
@@ -65,7 +65,7 @@ export class ApiService{
       newJson: sheet
     };
 
-    return this._httpClient.post<any>(`${this.baseURL}/api/editCharacter`, body);
+    return this._httpClient.post<any>(`${this.baseURL}/editCharacter.php`, body);
   }
 
   checkUserName(){
