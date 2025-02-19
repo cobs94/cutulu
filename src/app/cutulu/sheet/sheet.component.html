@@ -125,7 +125,7 @@
                     </div>
                     <div id="counters">
                         <div *ngFor=" let item of ( character?.stats?.currentStats| keyvalue: unsorted )">
-                            <div class="art-deco-div pb-3">
+                            <div class="art-deco-div pb-4 pt-3">
                                 <p>{{item.key|translate}}</p>
                             </div>
                             <div class="countWrapper" (click)="showCalculatorFunc(item.key, item.value)">

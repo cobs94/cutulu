@@ -127,18 +127,20 @@ h3 {
 #skills {
     display: flex;
     flex-flow: wrap;
+    justify-content: center;
 }
 
 .characteristic {
     width: 33%;
     margin-bottom: 15px;
+    justify-items: center;
 }
 
 .skill {
     display: flex;
-    margin: 15px 0;
+    margin: 15px 10px;
     align-items: center;
-    width: 50%;
+    width: 130px;
     justify-content: space-around;
     flex-direction: column;
 }
