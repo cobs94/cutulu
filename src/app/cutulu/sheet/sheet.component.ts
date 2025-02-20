@@ -351,13 +351,13 @@ export class SheetComponent implements AfterViewInit, OnInit {
   }
 
   onSwipeLeft() {
-    if (this.showNav != 'character') {
+    if (this.showNav != 'inventory') {
       this.showNav = this.navs[this.navs.indexOf(this.showNav) + 1];
     }
   }
 
   onSwipeRight() {
-    if (this.showNav != 'inventory') {
+    if (this.showNav != 'character') {
       this.showNav = this.navs[this.navs.indexOf(this.showNav) - 1];
     }
   }
