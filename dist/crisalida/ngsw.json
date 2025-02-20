@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1740057151220,
+  "timestamp": 1740057451657,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -70,7 +70,7 @@
     "/assets/icons/icon-96x96.png": "7fb8f59c30ce2ff12c700321a0b39e14b3dc8f95",
     "/assets/sky.svg": "3a0b420356d96e92173403d3941641ba7ef3ff08",
     "/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/index.html": "9c82588e29f4cc02015f75c865bd2df6ba6aef5e",
+    "/index.html": "b5bf25b15b91822d3cd76a8dabeeae7c8c9b941d",
     "/main.bb937266409f21ec.js": "bbba12678f9958c2054dc1cd290e0e4af5857bf6",
     "/manifest.webmanifest": "6f23d2f87c3fda0fca486f6b20093e5b04618489",
     "/polyfills.dc93eb7a844b0bc8.js": "e1f7ed65666efd1a812cdb5d3a6d1d591714303e",
