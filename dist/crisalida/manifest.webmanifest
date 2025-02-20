@@ -1,8 +1,8 @@
 {
   "name": "crisalida",
   "short_name": "crisalida",
-  "theme_color": "#252525",
-  "background_color": "#252525",
+  "theme_color": "rgba(0,0,0,0)",
+  "background_color": "#ffffff",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
