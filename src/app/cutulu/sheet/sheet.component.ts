@@ -1,5 +1,5 @@
 import { KeyValuePipe, NgClass, NgFor, NgIf } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, HostListener } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Character, Skills, Stats, Weapon } from 'src/app/models/character.model';
 import { SkillsPipePipe } from 'src/app/pipes/skills-pipe.pipe';
@@ -8,7 +8,6 @@ import { NewCharacterService } from 'src/app/services/new-character.service';
 import { DicesComponent } from './dices/dices.component';
 import { StadisticsCalculatorComponent } from './stadistics-calculator/stadistics-calculator.component';
 import { SpaceReplacePipe } from 'src/app/pipes/space-replace.pipe';
-import { ZeroReplacePipe } from 'src/app/pipes/zero-replace.pipe';
 import { InventoryEditorComponent } from './inventory-editor/inventory-editor.component';
 import { CombatDicesComponent } from './combat-dices/combat-dices.component';
 import { ConditionEditorComponent } from './condition-editor/condition-editor.component';
@@ -18,7 +17,7 @@ import { TranslatePipe } from 'src/app/pipes/translate.pipe';
 @Component({
   selector: 'app-sheet',
   standalone: true,
-  imports: [SkillsPipePipe, NgFor, NgIf, KeyValuePipe, DicesComponent, StadisticsCalculatorComponent, SpaceReplacePipe, ZeroReplacePipe, InventoryEditorComponent, CombatDicesComponent, NgClass, ConditionEditorComponent, LevelUpComponent, TranslatePipe],
+  imports: [SkillsPipePipe, NgFor, NgIf, KeyValuePipe, DicesComponent, StadisticsCalculatorComponent, SpaceReplacePipe, InventoryEditorComponent, CombatDicesComponent, NgClass, ConditionEditorComponent, LevelUpComponent, TranslatePipe],
   templateUrl: './sheet.component.html',
   styleUrl: './sheet.component.css'
 })
@@ -34,6 +33,7 @@ export class SheetComponent implements OnInit {
   checkboxStates: Record<string,boolean> = {};
 
   showNav:string = 'character';
+  navs: string[] = ['character', 'stats', 'skill', 'combat', 'inventory'];
 
   showDices:boolean = false;
   successThreshold:number = 0;
@@ -334,6 +334,22 @@ export class SheetComponent implements OnInit {
         console.log(error);
       }
     });
+  }
+
+  @HostListener('swipeleft', ['$event'])
+  onSwipeLeft(event: any) {
+    // Cambia a la siguiente pantalla
+    if (this.showNav != 'character') {
+      this.showNav = this.navs[this.navs.indexOf(this.showNav) + 1];
+    }
+  }
+
+  @HostListener('swiperight', ['$event'])
+  onSwipeRight(event: any) {
+    // Cambia a la pantalla anterior
+    if (this.showNav != 'inventory') {
+      this.showNav = this.navs[this.navs.indexOf(this.showNav) - 1];
+    }
   }
 }
 
