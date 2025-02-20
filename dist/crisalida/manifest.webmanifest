@@ -3,7 +3,6 @@
   "short_name": "crisalida",
   "theme_color": "#252525",
   "background_color": "#252525",
-  "display_override": ["fullscreen", "minimal-ui"],
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
