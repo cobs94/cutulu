@@ -1,5 +1,5 @@
 import { KeyValuePipe, NgClass, NgFor, NgIf } from '@angular/common';
-import { Component, OnInit, inject, HostListener } from '@angular/core';
+import { Component, OnInit, inject, HostListener, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Character, Skills, Stats, Weapon } from 'src/app/models/character.model';
 import { SkillsPipePipe } from 'src/app/pipes/skills-pipe.pipe';
@@ -13,6 +13,7 @@ import { CombatDicesComponent } from './combat-dices/combat-dices.component';
 import { ConditionEditorComponent } from './condition-editor/condition-editor.component';
 import { LevelUpComponent } from './level-up/level-up.component';
 import { TranslatePipe } from 'src/app/pipes/translate.pipe';
+import * as Hammer from 'hammerjs';
 
 @Component({
   selector: 'app-sheet',
@@ -21,7 +22,7 @@ import { TranslatePipe } from 'src/app/pipes/translate.pipe';
   templateUrl: './sheet.component.html',
   styleUrl: './sheet.component.css'
 })
-export class SheetComponent implements OnInit {
+export class SheetComponent implements AfterViewInit, OnInit {
 
   defaultSkills: Skills = Object.assign({},this.newCharacterService.getDefaultSkills());
 
@@ -62,6 +63,19 @@ export class SheetComponent implements OnInit {
   constructor( private newCharacterService: NewCharacterService) { }
 
   unsorted(a: any, b: any): number { return 0; }
+
+  @ViewChild('swipeZone', { static: false }) swipeZone!: ElementRef;
+
+  ngAfterViewInit() {
+    if (this.swipeZone) {
+      const hammer = new Hammer(this.swipeZone.nativeElement);
+
+      hammer.get('swipe').set({ direction: Hammer.DIRECTION_HORIZONTAL });
+
+      hammer.on('swipeleft', () => this.onSwipeLeft());
+      hammer.on('swiperight', () => this.onSwipeRight());
+    }
+  }
 
   ngOnInit(): void {
 
@@ -336,17 +350,13 @@ export class SheetComponent implements OnInit {
     });
   }
 
-  @HostListener('swipeleft', ['$event'])
-  onSwipeLeft(event: any) {
-    // Cambia a la siguiente pantalla
+  onSwipeLeft() {
     if (this.showNav != 'character') {
       this.showNav = this.navs[this.navs.indexOf(this.showNav) + 1];
     }
   }
 
-  @HostListener('swiperight', ['$event'])
-  onSwipeRight(event: any) {
-    // Cambia a la pantalla anterior
+  onSwipeRight() {
     if (this.showNav != 'inventory') {
       this.showNav = this.navs[this.navs.indexOf(this.showNav) - 1];
     }
