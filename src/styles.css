@@ -22,6 +22,7 @@
 
 body, html{
     display: block;
+    overscroll-behavior-y: contain;
     font-family: 'cutulu', var(--bs-body-font-family) !important;
     color: white !important;
     background-color: #252525 !important;
