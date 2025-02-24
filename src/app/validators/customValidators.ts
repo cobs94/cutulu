@@ -1,6 +1,7 @@
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators, ValidationErrors, ValidatorFn, isFormGroup } from '@angular/forms';
 
 export class Customvalidators {
+    
     static noRepeat(controls: string[], throws:number[]){
         return (group: AbstractControl) => {
             var controlsValue:number[] = [];

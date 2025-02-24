@@ -11,8 +11,8 @@
                         <input type="text" id="name" formControlName="name">
                     </div>
                 </div>
-                <div class="text-danger" *ngIf="hasErrors('name', 'required')">
-                    Nombre obligatorio
+                <div class="text-danger" *ngIf="submited && loginForm.get('name')?.invalid">
+                        Nombre obligatorio
                 </div>
             </div>
             <div class="mb-3 fieldWrapper">
@@ -22,14 +22,14 @@
                         <input type="password" id="password" formControlName="password">
                     </div>
                 </div>
-                <div class="text-danger" *ngIf="hasErrors('password', 'required')">
+                <div class="text-danger" *ngIf="submited && loginForm.get('password')?.invalid">
                     Contraseña obligatoria
                 </div>
             </div>
             <div class="text-danger" [ngClass]="{'hidden': errorLogin == ''}">
                 El usuario o la contraseña no coinciden.
             </div>
-            <div class="text-danger" [ngClass]="{'hidden': errorRegister == ''}">
+            <div class="text-danger" [ngClass]="{'hidden': errorRegister == ''}" [innerHTML]="errorRegister">
                 Ya existe un nombre con ese usuario
             </div>
             <div class="buttons">

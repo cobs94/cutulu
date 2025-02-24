@@ -17,6 +17,7 @@ export class LoginComponent{
 
   name:string = '';
   pass:string = '';
+  submited:boolean = false;
 
   errorLogin:string = ''
   errorRegister:string = ''
@@ -26,38 +27,47 @@ export class LoginComponent{
   router = inject(Router);
 
   login():void{
-
     this.name = String(this.loginForm.get('name')?.value);
     this.pass = String(this.loginForm.get('password')?.value);
+    this.submited = true;
 
-
-    this._httpClient.login(this.name, this.pass).subscribe({
-      next: (data:any) =>{
-        if (JSON.stringify(data) != '') {
-          localStorage.setItem('username', this.name);
-          this.router.navigate(['list']);
+    if (this.name != '' && this.pass != '') {
+      this._httpClient.login(this.name, this.pass).subscribe({
+        next: (data:any) =>{
+          if (JSON.stringify(data) != '') {
+            localStorage.setItem('username', this.name);
+            this.router.navigate(['list']);
+          }
+        },
+        error:(error:any) =>{
+          this.errorLogin = error;
         }
-      },
-      error:(error:any) =>{
-        this.errorLogin = error;
-      }
-    })
+      })
+    }
   }
 
   register():void{
     this.name = String(this.loginForm.get('name')?.value);
     this.pass = String(this.loginForm.get('password')?.value);
+    this.submited = true;
 
-    this._httpClient.register(this.name, this.pass).subscribe({
-      next: (data:any) =>{
-        localStorage.setItem('username', this.name);
-        this.router.navigate(['list']);
-      },
-      error:(error:any) =>{
-        this.errorRegister = error;
-        console.log(error)
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+[\]{};':"\\|,.<>\/?~`-])[A-Za-z\d!@#$%^&*()_+[\]{};':"\\|,.<>\/?~`-]{8,}$/;
+
+    if (regex.test(this.pass)){
+      if (this.name != '' && this.pass != '') {
+        this._httpClient.register(this.name, this.pass).subscribe({
+          next: (data:any) =>{
+            localStorage.setItem('username', this.name);
+            this.router.navigate(['list']);
+          },
+          error:(error:any) =>{
+            this.errorRegister = 'El usuario ya existe';
+          }
+        })
       }
-    })
+    }else{
+      this.errorRegister = 'La contraseña tiene que tener al menos 8 caracteres, mayúsculas, minúsculas, números y algún caracter especial';
+    }
   }
 
   hasErrors(controlName:string, errorType:string){
