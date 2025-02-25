@@ -1,5 +1,5 @@
 import { KeyValuePipe, NgClass, NgFor, NgIf } from '@angular/common';
-import { Component, OnInit, inject, HostListener, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, inject, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Character, Skills, Stats, Weapon } from 'src/app/models/character.model';
 import { SkillsPipePipe } from 'src/app/pipes/skills-pipe.pipe';

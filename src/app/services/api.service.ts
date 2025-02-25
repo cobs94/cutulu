@@ -73,4 +73,14 @@ export class ApiService{
       this.userName = localStorage.getItem('username');
     }
   }
+
+  public removeCharacter(character:string): Observable <any>{
+    this.checkUserName();
+    const body = {
+      userName: this.userName,
+      characterName: character,
+    };
+
+    return this._httpClient.delete<any>(`${this.baseURL}/deleteCharacter.php`, {body});
+  }
 }

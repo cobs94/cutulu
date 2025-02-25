@@ -438,7 +438,7 @@
                             </div>
                         </div>
                     }
-                    <div class="invBtns">
+                    <div class="buttons">
                         <button (click)="enterDeleteMode()">
                             @if (deleteMode) {
                                 Aceptar
@@ -455,42 +455,42 @@
     
     @if (showDices) {
         <div class="popupWrapper">
-            <dices [successThreshold] = successThreshold [currentLuck] = character?.stats?.currentStats?.luck [typeThrow] = typeThrow (expendedLuck)="expendedStatRecived($event)" (markedSuccess)="markSkill($event)"/>
+            <dices class="popup" [successThreshold] = successThreshold [currentLuck] = character?.stats?.currentStats?.luck [typeThrow] = typeThrow (expendedLuck)="expendedStatRecived($event)" (markedSuccess)="markSkill($event)"/>
         </div>
         <div id="popupBackgroud" (click)="showDicesFunc(0,'','')"></div>
     }
     
     @if (showCalculator) {
         <div class="popupWrapper">
-            <stadistics-calculator [statClicked] = statClicked [statCurrent] = statCurrent (expendedStat)="expendedStatRecived($event)"/>
+            <stadistics-calculator class="popup" [statClicked] = statClicked [statCurrent] = statCurrent (expendedStat)="expendedStatRecived($event)"/>
         </div>
         <div id="popupBackgroud" (click)="showCalculatorFunc('', 0)"></div>
     }
     
     @if (showInventory) {
         <div class="popupWrapper">
-            <inventory-editor (item)="addItem($event)"/>
+            <inventory-editor class="popup" (item)="addItem($event)"/>
         </div>
         <div id="popupBackgroud" (click)="showInvFunc()"></div>
     }
     
     @if (showCombat) {
         <div class="popupWrapper">
-            <combat-dices [successThreshold]="successThreshold" [damage]="damage" [modyfierBonus]="character?.combat?.damageBonus?.modifyer" [diceBonus]="character?.combat?.damageBonus?.dice || 0"/>
+            <combat-dices class="popup" [successThreshold]="successThreshold" [damage]="damage" [modyfierBonus]="character?.combat?.damageBonus?.modifyer" [diceBonus]="character?.combat?.damageBonus?.dice || 0"/>
         </div>
         <div id="popupBackgroud" (click)="showCombatFunc(0,'')"></div>
     }
 
     @if (showCondition) {
         <div class="popupWrapper">
-            <condition-editor  [conditionName] = "conditionName" (conditionOut)="changeCondition($event)"/>
+            <condition-editor class="popup"  [conditionName] = "conditionName" (conditionOut)="changeCondition($event)"/>
         </div>
         <div id="popupBackgroud" (click)="showConFunc()"></div>
     }
 
     @if (showLevelUp) {
         <div class="popupWrapper">
-            <level-up [successSkills]="successSkills" [skills]="allSkills || {}" (upgradedSkillsOut)="endUpgrade($event)"/>
+            <level-up class="popup" [successSkills]="successSkills" [skills]="allSkills || {}" (upgradedSkillsOut)="endUpgrade($event)"/>
         </div>
         <div id="popupBackgroud" (click)="showLevelFunc()"></div>
     }

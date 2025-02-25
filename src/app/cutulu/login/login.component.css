@@ -32,13 +32,3 @@
 .hidden{
     display:none
 }
-
-.buttons{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 30px;
-}
-
-.buttons button{
-    width: 40%;
-}

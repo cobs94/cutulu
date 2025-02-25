@@ -1,14 +1,21 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
+import { RouterLink } from '@angular/router';
+import * as Hammer from 'hammerjs';
+import { EditCharacterComponent } from './edit-character/edit-character.component';
 
 @Component({
+  standalone: true,
+  imports: [RouterLink, EditCharacterComponent],
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrl: './list.component.css'
+  styleUrl: './list.component.css',
 })
 export class ListComponent implements OnInit{
 
-  characters?:string[]
+  characters?:string[];
+  character?:string;
+  showEditCharacter:boolean = false;
 
   _httpClient = inject(ApiService);
 
@@ -26,6 +33,25 @@ export class ListComponent implements OnInit{
         console.log(error);
       } 
     })
+  }
+
+  showEditCharacterFunc(){
+    this.showEditCharacter = !this.showEditCharacter;
+  }
+
+  EditCharacterOut($event:string){
+    let index = this.characters?.indexOf($event);
+
+    if (index !== -1) {
+      this.characters?.splice(Number(index), 1);
+    }
+
+    this.showEditCharacterFunc();
+  }
+
+  onPress(character:string) {
+    this.character = character;
+    this.showEditCharacterFunc();
   }
 
 }

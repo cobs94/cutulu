@@ -5,8 +5,14 @@
         </div>
         @for (character of characters; track $index) {
             <div class="list">   
-                <a href="#" [routerLink]="['/characters', character]">{{character}}</a>
+                <a href="#" [routerLink]="['/characters', character]" (press)="onPress(character)">{{character}}</a>
             </div>
         }
     </div>
+    @if (showEditCharacter) {
+        <div class="popupWrapper">
+            <edit-character class="popup" [characterName] = "character" (close)="EditCharacterOut($event)"/>
+        </div>
+        <div id="popupBackgroud" (click)="showEditCharacterFunc()"></div>
+    }
 </div>
