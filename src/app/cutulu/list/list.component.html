@@ -5,7 +5,7 @@
         </div>
         @for (character of characters; track $index) {
             <div class="list">   
-                <a href="#" [routerLink]="['/characters', character]" (press)="onPress(character)">{{character}}</a>
+                <a href="#" [routerLink]="['/characters', character]" (touchstart)="onPress(character)">{{character}}</a>
             </div>
         }
     </div>

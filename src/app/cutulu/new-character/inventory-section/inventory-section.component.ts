@@ -7,11 +7,10 @@ import { ApiService } from 'src/app/services/api.service';
 import { NewCharacterService } from 'src/app/services/new-character.service';
 
 @Component({
-  selector: 'inventory-section',
-  standalone: true,
-  imports: [KeyValuePipe, ReactiveFormsModule],
-  templateUrl: './inventory-section.component.html',
-  styleUrl: './inventory-section.component.css'
+    selector: 'inventory-section',
+    imports: [KeyValuePipe, ReactiveFormsModule],
+    templateUrl: './inventory-section.component.html',
+    styleUrl: './inventory-section.component.css'
 })
 export class InventorySectionComponent {
   inventory: {[key:string]:number} = {};

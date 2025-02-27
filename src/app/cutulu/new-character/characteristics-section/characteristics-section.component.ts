@@ -5,14 +5,14 @@ import { Characteristics, Combat, Stats } from 'src/app/models/character.model';
 import { NewCharacterService } from 'src/app/services/new-character.service';
 import { Customvalidators } from 'src/app/validators/customValidators';
 import { TranslatePipe } from 'src/app/pipes/translate.pipe';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 @Component({
-  selector: 'app-characteristics',
-  standalone: true,
-  imports: [NgIf, ReactiveFormsModule, TranslatePipe],
-  templateUrl: './characteristics-section.component.html',
-  styleUrl: './characteristics-section.component.css'
+    selector: 'app-characteristics',
+    imports: [NgIf, ReactiveFormsModule, TranslatePipe, MatMenuModule],
+    templateUrl: './characteristics-section.component.html',
+    styleUrl: './characteristics-section.component.css'
 })
 export class CharacteristicsSectionComponent implements OnInit{
 
@@ -45,6 +45,8 @@ export class CharacteristicsSectionComponent implements OnInit{
 
   modCharacteristics: number = 0;
   characteristicsModByAge:string[] = [];
+
+  tooltipContent:string = "";
 
   combat: Combat={
     "damageBonus":{
@@ -297,6 +299,38 @@ export class CharacteristicsSectionComponent implements OnInit{
     this.newCharacterService.setStats(stats);
     this.newCharacterService.setCombat(this.combat);
     this.changePage.emit([2, this.custom]);
+  }
+
+  changeCharMenu(char:string){
+    switch (char) {
+      case 'fuerza':
+        this.tooltipContent = "La Fuerza mide la capacidad muscular de un investigador. Cuanta más alta sea, más peso podrá levantar y podrá aferrarse a algo con más firmeza. Esta característica determina el daño que causa un investigador en combate cuerpo a cuerpo. Si la FUE de un investigador se reduce a O este quedará inválido, incapaz de levantarse de la cama." ;
+        break;
+      case 'destreza':
+        this.tooltipContent = "La Destreza mide la rapidez, agilidad y flexibilidad. Sirve para intentar agarrarse a algo y evitar una caída, moverse más rápido que un adversario o llevar a cabo alguna acción delicada. Un investigador sin DES carecerá de coordinación y será incapaz de realizar tareas físicas. Durante el combate, el personaje con la DES más alta actúa primero.";
+        break;
+      case 'constitucion':
+        this.tooltipContent = "La Constitución representa la salud, el vigor y la vitalidad. Cuanta más baja sea, las enfermedades y los venenos pueden afectar más. Con una Constitución elevada se tiene más Puntos de Vida. Una lesión física grave o un ataque mágico podrían reducir la característica y, si la constitución llegara a cero, el investigador moriría.";
+        break;
+      case 'apariencia':
+        this.tooltipContent = "La Apariencia representa el atractivo físico y la personalidad. Cuanta más alta sea, se es más encantador y agradable, pero podría carecer de una belleza convencional. Una Apariencia de 0 se es terriblemente feo, y puede que también posea un comportamiento detestable y provoque comentarios y conmoción allá donde vaya.";
+        break;
+      case 'poder':
+        this.tooltipContent = "El Poder indica la fuerza de voluntad y, cuanto mayor es su valor, mayores son también las aptitudes para la magia y para resistirse a ella. Un Poder bajo hace del personaje un zombi sin «aspiraciones>> e incapaz de hacer uso de la magia. La cantidad de Puntos de Cordura es igual al Poder. También determina la cantidad de «Puntos de Magia» de un personaje.";
+        break;
+      case 'inteligencia':
+        this.tooltipContent = "La Inteligencia representa lo bien que los investigadores son capaces de aprender, recordar y analizar información, y lo bien que resuelven enigmas. La Inteligencia determina la cantidad de puntos para habilidades de interés particular que se adjudican a un nuevo investigador.";
+        break;
+      case 'tamaño':
+        this.tooltipContent = "El Tamaño representa tanto la estatura como el peso con un solo número. Utilízala para determinar si alguien es capaz de echar un vistazo por encima de un muro, escurrirse a través de una pequeña abertura o, incluso, para averiguar de quién es la cabeza que asoma sobre la hierba. El Tamaño sirve para determinar los Puntos de Vida, la Bonificación al daño y la Corpulencia.";
+        break;
+      case 'educacion':
+        this.tooltipContent = "La Educación es una medida de los conocimientos formales y objetivos, así como un indicador del tiempo que ha dedicado a su educación. La Educación mide la información de la que se dispone, no el uso inteligente de la misma. Un personaje sin Educación es como un niño recién nacido o como un amnésico sin ningún conocimiento acerca del mundo. Con una Educación de 60 el personaje ha terminado el bachillerato, una de 70 indica que esa persona ha pasado algunos años en la universidad. Con una de 80 se tiene un título universitario. Una Educación elevada puede deberse a un autodidacta y no solo que posea títulos académicos. La Educación determina cuántos puntos para habilidades de ocupación se tiene, y representa su porcentaje inicial de la habilidad de Lengua propia.";
+        break;
+    
+      default:
+        break;
+    }
   }
 
   hasErrors(form:string, errorType:string, controlName?:string){

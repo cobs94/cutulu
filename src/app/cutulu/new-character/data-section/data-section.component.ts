@@ -1,18 +1,31 @@
-import { NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Data } from 'src/app/models/character.model';
 import { ApiService } from 'src/app/services/api.service';
 import { NewCharacterService } from 'src/app/services/new-character.service';
+import {MatMenuModule} from '@angular/material/menu';
 
 @Component({
-  selector: 'data-section',
-  standalone: true,
-  imports: [NgIf, ReactiveFormsModule],
-  templateUrl: './data-section.component.html',
-  styleUrl: './data-section.component.css'
+    selector: 'data-section',
+    standalone: true,
+    imports: [
+      ReactiveFormsModule, 
+      CommonModule,
+      MatMenuModule,
+    ],
+    templateUrl: './data-section.component.html',
+    styleUrl: './data-section.component.css'
 })
+
 export class DataSectionComponent implements OnInit{
+
+  _httpClient = inject(ApiService);
+  constructor( private newCharacterService: NewCharacterService) { }
+  formBuilder = inject(FormBuilder);
+  customTooltip: string = "Primera línea <br> Segunda línea";
+
+  @Output() changePage = new EventEmitter<number>();
 
   newCharacterDataForm = this.formBuilder.group({
     characterName:  ['', Validators.required],
@@ -24,11 +37,6 @@ export class DataSectionComponent implements OnInit{
   });
 
   occupationList:string[] = [];
-
-  @Output() changePage = new EventEmitter<number>();
-  
-  _httpClient = inject(ApiService);
-  constructor(private formBuilder: FormBuilder, private newCharacterService: NewCharacterService) { }
 
   saveDataCharacters(){
     let data:Data = {

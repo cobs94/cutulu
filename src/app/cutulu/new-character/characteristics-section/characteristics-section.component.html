@@ -6,14 +6,14 @@
 }@else {
     <h1>Tiradas</h1>
     <p>Ha repartir entre Fuerza, Destreza, Constitución, Apariencia y Poder</p>
-    <p>{{characteristicsArray['firstThrow']}}</p>
+    <p>{{characteristicsArray['firstThrow'].join(', ')}}</p>
     <p>Ha repartir entre Inteligencia, Tamaño, Educación</p>
-    <p>{{characteristicsArray['secondThrow']}}</p>
+    <p>{{characteristicsArray['secondThrow'].join(', ')}}</p>
 
     <form [formGroup]="newCharacterCharacteristicsForm" (submit)="saveCharacteristicsCharacter()">
         <div formGroupName="characteristicsForm">
             <div class="mb-3">
-                <label for="strength" class="form-label">Fuerza</label>
+                <label for="strength" class="form-label" [matMenuTriggerFor]="tooltipMenu" (click)="changeCharMenu('fuerza')">Fuerza <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" style="fill: white; fill: white; position: relative; top: -1px; left: 6px;"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z"/></svg></label>
                 <div class="box">
                     <div class="box-inner">
                         @if (!custom) {
@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div class="mb-3">
-                <label for="dexterity" class="form-label">Destreza</label>
+                <label for="dexterity" class="form-label" [matMenuTriggerFor]="tooltipMenu" (click)="changeCharMenu('destreza')">Destreza <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" style="fill: white; fill: white; position: relative; top: -1px; left: 6px;"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z"/></svg></label>
                 <div class="box">
                     <div class="box-inner">
                         @if (!custom) {
@@ -57,7 +57,7 @@
                 </div>
             </div>
             <div class="mb-3">
-                <label for="constitution" class="form-label">Constitución</label>
+                <label for="constitution" class="form-label" [matMenuTriggerFor]="tooltipMenu" (click)="changeCharMenu('constitucion')">Constitución <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" style="fill: white; fill: white; position: relative; top: -1px; left: 6px;"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z"/></svg></label>
                 <div class="box">
                     <div class="box-inner">
                         @if (!custom) {
@@ -79,7 +79,7 @@
                 </div>
             </div>
             <div class="mb-3">
-                <label for="appearance" class="form-label">Apariencia</label>
+                <label for="appearance" class="form-label" [matMenuTriggerFor]="tooltipMenu" (click)="changeCharMenu('apariencia')">Apariencia <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" style="fill: white; fill: white; position: relative; top: -1px; left: 6px;"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z"/></svg></label>
                 <div class="box">
                     <div class="box-inner">
                         @if (!custom) {
@@ -101,7 +101,7 @@
                 </div>
             </div>
             <div class="mb-3">
-                <label for="power" class="form-label">Poder</label>
+                <label for="power" class="form-label" [matMenuTriggerFor]="tooltipMenu" (click)="changeCharMenu('poder')">Poder <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" style="fill: white; fill: white; position: relative; top: -1px; left: 6px;"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z"/></svg></label>
                 <div class="box">
                     <div class="box-inner">
                         @if (!custom) {
@@ -124,7 +124,7 @@
             </div>
         
             <div class="mb-3">
-                <label for="intelligence" class="form-label">Inteligencia</label>
+                <label for="intelligence" class="form-label" [matMenuTriggerFor]="tooltipMenu" (click)="changeCharMenu('inteligencia')">Inteligencia <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" style="fill: white; fill: white; position: relative; top: -1px; left: 6px;"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z"/></svg></label>
                 <div class="box">
                     <div class="box-inner">
                         @if (!custom) {
@@ -146,7 +146,7 @@
                 </div>
             </div>
             <div class="mb-3">
-                <label for="size" class="form-label">Tamaño</label>
+                <label for="size" class="form-label" [matMenuTriggerFor]="tooltipMenu" (click)="changeCharMenu('tamaño')">Tamaño <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" style="fill: white; fill: white; position: relative; top: -1px; left: 6px;"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z"/></svg></label>
                 <div class="box">
                     <div class="box-inner">
                         @if (!custom) {
@@ -168,7 +168,7 @@
                 </div>
             </div>
             <div class="mb-3">
-                <label for="education" class="form-label">Educación</label>
+                <label for="education" class="form-label" [matMenuTriggerFor]="tooltipMenu" (click)="changeCharMenu('educacion')">Educación <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" style="fill: white; fill: white; position: relative; top: -1px; left: 6px;"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z"/></svg></label>
                 <div class="box">
                     <div class="box-inner">
                         @if (!custom) {
@@ -220,3 +220,7 @@
         }
 </form>
 }
+
+<mat-menu #tooltipMenu="matMenu" class="customTooltip">
+    <div [innerHTML]="tooltipContent"></div>
+</mat-menu>

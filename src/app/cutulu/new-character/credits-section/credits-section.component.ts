@@ -6,11 +6,10 @@ import { ApiService } from 'src/app/services/api.service';
 import { NewCharacterService } from 'src/app/services/new-character.service';
 
 @Component({
-  selector: 'credits-section',
-  standalone: true,
-  imports: [ReactiveFormsModule, CurrencyPipe],
-  templateUrl: './credits-section.component.html',
-  styleUrl: './credits-section.component.css'
+    selector: 'credits-section',
+    imports: [ReactiveFormsModule, CurrencyPipe],
+    templateUrl: './credits-section.component.html',
+    styleUrl: './credits-section.component.css'
 })
 export class CreditsSectionComponent implements OnInit{
   @Output() changePage = new EventEmitter<number>();

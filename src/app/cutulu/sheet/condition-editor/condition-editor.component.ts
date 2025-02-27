@@ -2,11 +2,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'condition-editor',
-  standalone: true,
-  imports: [FormsModule],
-  templateUrl: './condition-editor.component.html',
-  styleUrl: './condition-editor.component.css'
+    selector: 'condition-editor',
+    imports: [FormsModule],
+    templateUrl: './condition-editor.component.html',
+    styleUrl: './condition-editor.component.css'
 })
 export class ConditionEditorComponent{
   @Input() conditionName?:string;

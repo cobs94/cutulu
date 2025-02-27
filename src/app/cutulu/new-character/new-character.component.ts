@@ -6,11 +6,10 @@ import { CreditsSectionComponent } from './credits-section/credits-section.compo
 import { InventorySectionComponent } from './inventory-section/inventory-section.component';
 
 @Component({
-  selector: 'app-new-character',
-  standalone: true,
-  imports: [ DataSectionComponent, CharacteristicsSectionComponent, SkillsSectionComponent, CreditsSectionComponent, InventorySectionComponent],
-  templateUrl: './new-character.component.html',
-  styleUrl: './new-character.component.css'
+    selector: 'app-new-character',
+    imports: [DataSectionComponent, CharacteristicsSectionComponent, SkillsSectionComponent, CreditsSectionComponent, InventorySectionComponent],
+    templateUrl: './new-character.component.html',
+    styleUrl: './new-character.component.css'
 })
 export class NewCharacterComponent{
 

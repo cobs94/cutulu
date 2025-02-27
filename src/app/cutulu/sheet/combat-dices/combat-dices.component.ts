@@ -2,11 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'combat-dices',
-  standalone: true,
-  imports: [ReactiveFormsModule],
-  templateUrl: './combat-dices.component.html',
-  styleUrl: './combat-dices.component.css'
+    selector: 'combat-dices',
+    imports: [ReactiveFormsModule],
+    templateUrl: './combat-dices.component.html',
+    styleUrl: './combat-dices.component.css'
 })
 export class CombatDicesComponent implements OnInit{
   @Input() damage:string = '';

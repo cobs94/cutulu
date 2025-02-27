@@ -2,11 +2,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'dices',
-  standalone: true,
-  imports: [ ReactiveFormsModule],
-  templateUrl: './dices.component.html',
-  styleUrl: './dices.component.css'
+    selector: 'dices',
+    imports: [ReactiveFormsModule],
+    templateUrl: './dices.component.html',
+    styleUrl: './dices.component.css'
 })
 export class DicesComponent {
 

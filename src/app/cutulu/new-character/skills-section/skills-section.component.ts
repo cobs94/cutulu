@@ -8,11 +8,11 @@ import { NewCharacterService } from 'src/app/services/new-character.service';
 import { Customvalidators } from 'src/app/validators/customValidators';
 
 @Component({
-  selector: 'skills-section',
-  standalone: true,
-  imports: [KeyValuePipe, SkillsPipePipe, ReactiveFormsModule,NgIf, NgFor],
-  templateUrl: './skills-section.component.html',
-  styleUrl: './skills-section.component.css'
+    selector: 'skills-section',
+    imports: [KeyValuePipe, SkillsPipePipe, ReactiveFormsModule, NgIf, NgFor],
+    templateUrl: './skills-section.component.html',
+    styleUrl: './skills-section.component.css',
+    standalone: true
 })
 export class SkillsSectionComponent implements OnInit{
 

@@ -1,14 +1,23 @@
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrl: './login.component.css',
+    imports: [CommonModule, ReactiveFormsModule],
+    standalone: true
 })
+
 export class LoginComponent{
+
+_httpClient = inject(ApiService);
+formBuilder = inject(FormBuilder);
+router = inject(Router);
 
   loginForm = this.formBuilder.group({
     name:  ['', Validators.required, {nonNullable: true}],
@@ -21,10 +30,6 @@ export class LoginComponent{
 
   errorLogin:string = ''
   errorRegister:string = ''
-
-  constructor(private _httpClient: ApiService, private formBuilder: FormBuilder) { }
-
-  router = inject(Router);
 
   login():void{
     this.name = String(this.loginForm.get('name')?.value);

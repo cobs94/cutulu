@@ -1,4 +1,4 @@
-import { KeyValuePipe, NgClass, NgFor, NgIf } from '@angular/common';
+import { CommonModule, KeyValuePipe } from '@angular/common';
 import { Component, OnInit, inject, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Character, Skills, Stats, Weapon } from 'src/app/models/character.model';
@@ -13,14 +13,25 @@ import { CombatDicesComponent } from './combat-dices/combat-dices.component';
 import { ConditionEditorComponent } from './condition-editor/condition-editor.component';
 import { LevelUpComponent } from './level-up/level-up.component';
 import { TranslatePipe } from 'src/app/pipes/translate.pipe';
-import * as Hammer from 'hammerjs';
+import { HammerModule } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-sheet',
-  standalone: true,
-  imports: [SkillsPipePipe, NgFor, NgIf, KeyValuePipe, DicesComponent, StadisticsCalculatorComponent, SpaceReplacePipe, InventoryEditorComponent, CombatDicesComponent, NgClass, ConditionEditorComponent, LevelUpComponent, TranslatePipe],
-  templateUrl: './sheet.component.html',
-  styleUrl: './sheet.component.css'
+    selector: 'app-sheet',
+    imports: [
+      SkillsPipePipe, 
+      KeyValuePipe, 
+      DicesComponent, 
+      StadisticsCalculatorComponent, 
+      SpaceReplacePipe, 
+      InventoryEditorComponent, 
+      CombatDicesComponent, 
+      ConditionEditorComponent, 
+      LevelUpComponent, 
+      TranslatePipe, 
+      HammerModule,
+      CommonModule ],
+    templateUrl: './sheet.component.html',
+    styleUrl: './sheet.component.css'
 })
 export class SheetComponent implements AfterViewInit, OnInit {
 

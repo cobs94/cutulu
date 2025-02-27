@@ -6,11 +6,10 @@ import { NewCharacterService } from 'src/app/services/new-character.service';
 import { Customvalidators } from 'src/app/validators/customValidators';
 
 @Component({
-  selector: 'stadistics-calculator',
-  standalone: true,
-  imports: [ReactiveFormsModule,  NgIf],
-  templateUrl: './stadistics-calculator.component.html',
-  styleUrl: './stadistics-calculator.component.css'
+    selector: 'stadistics-calculator',
+    imports: [ReactiveFormsModule, NgIf],
+    templateUrl: './stadistics-calculator.component.html',
+    styleUrl: './stadistics-calculator.component.css'
 })
 export class StadisticsCalculatorComponent implements OnInit{
 

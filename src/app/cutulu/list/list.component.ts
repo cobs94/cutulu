@@ -1,21 +1,21 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { RouterLink } from '@angular/router';
-import * as Hammer from 'hammerjs';
 import { EditCharacterComponent } from './edit-character/edit-character.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  standalone: true,
-  imports: [RouterLink, EditCharacterComponent],
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrl: './list.component.css',
+    imports: [RouterLink, EditCharacterComponent, CommonModule],
+    selector: 'app-list',
+    templateUrl: './list.component.html',
+    styleUrl: './list.component.css'
 })
 export class ListComponent implements OnInit{
 
   characters?:string[];
   character?:string;
   showEditCharacter:boolean = false;
+  pressTimer: any;
 
   _httpClient = inject(ApiService);
 
@@ -50,8 +50,10 @@ export class ListComponent implements OnInit{
   }
 
   onPress(character:string) {
-    this.character = character;
-    this.showEditCharacterFunc();
+    this.pressTimer = setTimeout(() => {
+      this.character = character;
+      this.showEditCharacterFunc();
+    }, 1000);
   }
 
 }

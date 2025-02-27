@@ -3,11 +3,10 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Weapon } from 'src/app/models/character.model';
 
 @Component({
-  selector: 'inventory-editor',
-  standalone: true,
-  imports: [ReactiveFormsModule],
-  templateUrl: './inventory-editor.component.html',
-  styleUrl: './inventory-editor.component.css'
+    selector: 'inventory-editor',
+    imports: [ReactiveFormsModule],
+    templateUrl: './inventory-editor.component.html',
+    styleUrl: './inventory-editor.component.css'
 })
 export class InventoryEditorComponent {
   

@@ -396,6 +396,13 @@ a, a:visited, a:hover {
     width: 40%;
 }
 
+.customTooltip > div{
+    background-color: #252525;
+    border: 3px solid var(--yellow) !important;
+    padding: 15px;
+    border-radius: 0 !important;
+}
+
 
 :host {
 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -688,3 +695,6 @@ width: 1920px;
         visibility: hidden;
     }
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

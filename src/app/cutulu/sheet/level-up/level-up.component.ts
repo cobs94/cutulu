@@ -3,11 +3,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Skills } from 'src/app/models/character.model';
 
 @Component({
-  selector: 'level-up',
-  standalone: true,
-  imports: [NgIf],
-  templateUrl: './level-up.component.html',
-  styleUrl: './level-up.component.css'
+    selector: 'level-up',
+    imports: [NgIf],
+    templateUrl: './level-up.component.html',
+    styleUrl: './level-up.component.css'
 })
 export class LevelUpComponent {
   @Input() successSkills:string[] = [];
