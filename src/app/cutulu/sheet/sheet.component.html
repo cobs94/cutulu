@@ -387,12 +387,28 @@
                                 <td>{{character?.combat?.build}}</td>
                             
                             </tr>
+                            <tr>
+                                <td>Esquivar:</td>
+                                <td></td>
+                            
+                            </tr>
                         </tbody>
                     </table>
                     <div class="dodgeBox">
-                    <p>Esquivar: </p>
-                    <table class="table art-deco-div" (click)="showDicesFunc(allSkills['Esquivar'], 'Esquivar', 'skill')">
-                        <thead class="thead-dark">
+                    <div class="combatTable">
+                        <div class="art-deco-div">
+                            <p>Normal</p>
+                            <p>Difícil</p>
+                            <p>Extremo</p>
+                        </div>
+                        <div class="art-deco-div noBorder">
+                            <p>{{allSkills['Esquivar']}}</p>
+                            <p>{{hardThrow(allSkills['Esquivar'])}}</p>
+                            <p>{{epicThrow(allSkills['Esquivar'])}}</p>
+                        </div>
+                    </div>
+                    <!-- <table class="table" (click)="showDicesFunc(allSkills['Esquivar'], 'Esquivar', 'skill')">
+                        <thead class="thead-dark art-deco-div">
                           <tr>
                             <th scope="col">Normal</th>
                             <th scope="col">Difícil</th>
@@ -406,7 +422,7 @@
                             <td>{{epicThrow(allSkills['Esquivar'])}}</td>
                           </tr>
                         </tbody>
-                    </table>
+                    </table> -->
                     </div>
                 </div>
             </div>

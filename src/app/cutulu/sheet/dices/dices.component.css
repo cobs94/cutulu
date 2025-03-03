@@ -16,3 +16,11 @@
 .container{
     width: auto;
 }
+
+.result{
+    margin: 0;
+    border: 2px solid var(--yellow);
+    border-radius: 80px 80px 0px 0px;
+    padding: 3px;
+    border-bottom: none;
+}

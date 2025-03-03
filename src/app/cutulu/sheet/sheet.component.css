@@ -247,3 +247,44 @@ table.table.art-deco-div {
     max-width: 600px;
     margin: auto;
 }
+
+.noBorder{
+    outline: transparent;
+    background: transparent;
+}
+
+.noBorder p {
+    margin: 0 !important;
+    padding: 13px !important;
+    width: 53px !important;
+    border: 2px solid var(--yellow);
+    border-radius: 46px;
+    height: 53px;
+}
+
+.noBorder p::after{
+    content: none !important;
+}
+
+.combatTable div {
+    display: flex;
+    justify-content: space-around;
+}
+
+.combatTable p{
+    position: relative;
+    padding: 15px;
+    width: 33%;
+    margin: 0;
+}
+
+.combatTable p::after{
+    content: "";
+    width: 2px;
+    height: 27px; /* Ajusta según la separación entre divs */
+    background: var(--yellow);
+    position: absolute;
+    left: 50%;
+    top: 109%; /* Ubicación de la línea */
+    transform: translateX(-50%);
+}
