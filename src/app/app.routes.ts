@@ -9,5 +9,5 @@ export const routes: Routes = [
     {path: 'list', component: ListComponent},
     {path: 'characters/:character', component: SheetComponent},
     {path: 'newCharacter', component: NewCharacterComponent},
-    { path: '**', redirectTo: '', pathMatch: 'full' }
+    {path: '**', redirectTo: '', pathMatch: 'full' }
 ];
