@@ -14,6 +14,7 @@ import { ConditionEditorComponent } from './condition-editor/condition-editor.co
 import { LevelUpComponent } from './level-up/level-up.component';
 import { TranslatePipe } from 'src/app/pipes/translate.pipe';
 import { HammerModule } from '@angular/platform-browser';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
     selector: 'app-sheet',
@@ -24,7 +25,7 @@ import { HammerModule } from '@angular/platform-browser';
       StadisticsCalculatorComponent, 
       SpaceReplacePipe, 
       InventoryEditorComponent, 
-      CombatDicesComponent, 
+      CombatDicesComponent,
       ConditionEditorComponent, 
       LevelUpComponent, 
       TranslatePipe, 
@@ -70,6 +71,7 @@ export class SheetComponent implements AfterViewInit, OnInit {
 
   _route = inject(ActivatedRoute);
   _httpClient = inject(ApiService);
+  _breakpointObserver = inject(BreakpointObserver);
   
   constructor( private newCharacterService: NewCharacterService) { }
 
