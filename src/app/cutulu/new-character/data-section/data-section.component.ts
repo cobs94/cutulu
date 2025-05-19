@@ -52,7 +52,18 @@ export class DataSectionComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    let data = this.newCharacterService.getData();
     this.getOccupations();
+    if (data) {
+      this.newCharacterDataForm.patchValue({
+        characterName:  data.name,
+        characterAge: String(data.age),
+        characterOccupation: data.occupation,
+        characterSex: data.sex,
+        characterResidence: data.residence,
+        characterBirthplace: data.birthplace
+      });
+    }
   }
 
   getOccupations(){
