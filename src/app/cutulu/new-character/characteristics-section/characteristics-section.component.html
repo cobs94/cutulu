@@ -1,14 +1,17 @@
-@if(!buttonClicked){
+<ng-container *ngIf="!buttonClicked; else showForm">
     <div id="buttons">
         <button (click)="characteristicsThrow()" >Hacer tiradas</button>
         <button (click)="characteristicsCustom()">Características personalizadas</button>
     </div>
-}@else {
-    <h1>Tiradas</h1>
-    <p>Ha repartir entre Fuerza, Destreza, Constitución, Apariencia y Poder</p>
-    <p>{{characteristicsArray['firstThrow'].join(', ')}}</p>
-    <p>Ha repartir entre Inteligencia, Tamaño, Educación</p>
-    <p>{{characteristicsArray['secondThrow'].join(', ')}}</p>
+</ng-container>
+<ng-template #showForm>
+    <ng-container *ngIf="!custom">
+        <h1>Tiradas</h1>
+        <p>Ha repartir entre Fuerza, Destreza, Constitución, Apariencia y Poder</p>
+        <p>{{characteristicsArray['firstThrow'].join(', ')}}</p>
+        <p>Ha repartir entre Inteligencia, Tamaño, Educación</p>
+        <p>{{characteristicsArray['secondThrow'].join(', ')}}</p>
+    </ng-container>
 
     <form [formGroup]="newCharacterCharacteristicsForm" (submit)="saveCharacteristicsCharacter()">
         <div formGroupName="characteristicsForm">
@@ -218,8 +221,8 @@
         @if (modByAgeForm.valid && characteristicsForm.valid && characteristicsForm.touched){
             <button type="submit">Siguiente</button>
         }
-</form>
-}
+    </form>
+</ng-template>
 
 <mat-menu #tooltipMenu="matMenu" class="customTooltip">
     <div [innerHTML]="tooltipContent"></div>

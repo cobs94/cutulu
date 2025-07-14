@@ -73,6 +73,8 @@ export class CharacteristicsSectionComponent implements OnInit{
         this.strength = Number(this.characteristicsForm.get("strength")?.value);
         this.constitution = Number(this.characteristicsForm.get("constitution")?.value);
         this.dexterity = Number(this.characteristicsForm.get("dexterity")?.value);
+        this.characteristicsArray['firstThrow'] = [];
+        this.characteristicsArray['secondThrow'] = [];
         this.age = this.newCharacterService.getAge();
         this.modifiersByAge();
       }
