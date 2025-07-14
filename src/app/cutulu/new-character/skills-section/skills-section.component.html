@@ -1,5 +1,5 @@
 <h1>Repartir puntos de habilidades</h1>
-<form [formGroup]="skillsForm" (submit)="saveOccupationSkills()">
+<form [formGroup]="skillsForm">
   @if (!showOccupationForm) {
     <p *ngIf="!custom">Puntos de Interes: {{intelligencePoints}}</p>
     <div formGroupName="interestPointsForm">
@@ -73,7 +73,7 @@
       }
       @if (occupationPointsForm.valid && interestPointsForm.valid ) {
         <div class="nextBtn">
-          <button type="submit">Siguiente</button>
+          <button type="submit" (click)="savePersonalSkills()">Siguiente</button>
         </div>
       }
     </div>
