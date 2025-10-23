@@ -8,7 +8,7 @@ import { Character } from '../models/character.model';
 })
 export class ApiService{
 
-  private baseURL = 'https://api-cutulu.onrender.com';
+  private baseURL = 'https://cutulu.helioho.st';
 
   private userName:string|null = '';
 
@@ -18,7 +18,12 @@ export class ApiService{
 
      this.userName = name;
 
-    return this._httpClient.get<any>(`${this.baseURL}/login.php?userName=` + name + `&pass=` + pass);
+    const body = {
+      userName: name,
+      pass: pass
+    };
+
+    return this._httpClient.post<any>(`${this.baseURL}/login.php`, body);
   }
 
   public register(name:string, pass:string): Observable <any>{
@@ -77,10 +82,11 @@ export class ApiService{
   public removeCharacter(character:string): Observable <any>{
     this.checkUserName();
     const body = {
+      _method: "DELETE",
       userName: this.userName,
       characterName: character,
     };
 
-    return this._httpClient.delete<any>(`${this.baseURL}/deleteCharacter.php`, {body});
+    return this._httpClient.post<any>(`${this.baseURL}/deleteCharacter.php`, {body});
   }
 }
