@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Data } from 'src/app/models/character.model';
-import { ApiService } from 'src/app/services/api.service';
 import { NewCharacterService } from 'src/app/services/new-character.service';
 import {MatMenuModule} from '@angular/material/menu';
+import { DatabaseService } from 'src/app/services/database.service';
 
 @Component({
     selector: 'data-section',
@@ -20,7 +20,7 @@ import {MatMenuModule} from '@angular/material/menu';
 
 export class DataSectionComponent implements OnInit{
 
-  _httpClient = inject(ApiService);
+  db = inject(DatabaseService);
   constructor( private newCharacterService: NewCharacterService) { }
   formBuilder = inject(FormBuilder);
   customTooltip: string = "Primera línea <br> Segunda línea";
@@ -66,15 +66,8 @@ export class DataSectionComponent implements OnInit{
     }
   }
 
-  getOccupations(){
-    this._httpClient.getOcupationList().subscribe({
-      next: (data:any) => {
-        this.occupationList = data;
-      },
-      error:(error:any) =>{
-        console.log(error);
-      } 
-    })
+  async getOccupations(){
+    this.occupationList = await this.db.getOccupationNames();
   }
 
   hasErrors(controlName:string, errorType:string){

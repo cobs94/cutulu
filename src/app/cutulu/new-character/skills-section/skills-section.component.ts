@@ -3,9 +3,9 @@ import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular
 import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Skills } from 'src/app/models/character.model';
 import { SkillsPipePipe } from 'src/app/pipes/skills-pipe.pipe';
-import { ApiService } from 'src/app/services/api.service';
 import { NewCharacterService } from 'src/app/services/new-character.service';
 import { Customvalidators } from 'src/app/validators/customValidators';
+import { DatabaseService } from 'src/app/services/database.service';
 
 @Component({
     selector: 'skills-section',
@@ -20,7 +20,7 @@ export class SkillsSectionComponent implements OnInit{
   @Output() changePage = new EventEmitter<number>();
 
   newCharacterService = inject(NewCharacterService);
-  _httpClient = inject(ApiService);
+  db = inject(DatabaseService);
   formBuilder = inject(FormBuilder);
 
   skillsForm = this.formBuilder.group({
@@ -71,15 +71,12 @@ export class SkillsSectionComponent implements OnInit{
 
     this.interestPointsForm.get('Mitos_de_CthulhuInterest')?.disable();
 
-    this._httpClient.getProfessionalSkills(this.newCharacterService.getOccupation()).subscribe({
-      next: (data:any) => {
-        this.occupationSkills = data;
-        this.occupationPointsCase = data['occupationPoints'];
-      },
-      error:(error:any) =>{
-        console.log(error);
-      } 
-    })
+    this. getProfessionalSkills();
+  }
+
+  async getProfessionalSkills(){
+    this.occupationSkills = await this.db.getOccupationSkills(this.newCharacterService.getOccupation());
+    this.occupationPointsCase = this.occupationSkills['occupationPoints'];
   }
 
   savePersonalSkills(){

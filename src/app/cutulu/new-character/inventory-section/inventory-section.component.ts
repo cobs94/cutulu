@@ -3,8 +3,8 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Objects, Weapon } from 'src/app/models/character.model';
-import { ApiService } from 'src/app/services/api.service';
 import { NewCharacterService } from 'src/app/services/new-character.service';
+import { Character, DatabaseService } from 'src/app/services/database.service';
 
 @Component({
     selector: 'inventory-section',
@@ -18,7 +18,7 @@ export class InventorySectionComponent {
 
   formBuilder = inject(FormBuilder);
   newCharacterService = inject(NewCharacterService);
-  apiService = inject(ApiService);
+  db = inject(DatabaseService);
   router = inject(Router);
   
   inventoryForm = this.formBuilder.group({
@@ -73,20 +73,20 @@ export class InventorySectionComponent {
     delete this.inventory[name];
   }
 
-  saveInventory(){
+  async saveInventory(){
     let objects:Objects = this.inventory;
     this.newCharacterService.setObjects(objects);
     this.newCharacterService.setWeapons(this.weapons);
 
-    let character = this.newCharacterService.getCharacter();
+    let characterData = this.newCharacterService.getCharacter();
 
-    this.apiService.postCharacter(character.data.name, character).subscribe({
-      next: (data:any) =>{
-        this.router.navigate(['list']);
-      },
-      error:(error:any) =>{
-        console.log(error)
-      }
-    })
+    let newCharacter:Character = {
+      name : characterData.data.name,
+      data : characterData
+    }
+
+    await this.db.addCharacter(newCharacter);
+
+    this.router.navigate(['list']);
   }
 }

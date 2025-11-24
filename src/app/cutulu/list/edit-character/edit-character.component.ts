@@ -1,5 +1,5 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { ApiService } from 'src/app/services/api.service';
+import { DatabaseService } from 'src/app/services/database.service';
 
 @Component({
     selector: 'edit-character',
@@ -9,21 +9,14 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class EditCharacterComponent {
 
-  @Input() characterName?:string;
+  @Input() characterName:string = '';
   @Output() close = new EventEmitter <string>;
 
-  _httpClient = inject(ApiService);
+  db = inject(DatabaseService);
 
-  removeCharacter(){
-     this._httpClient.removeCharacter(this.characterName!).subscribe({
-       next : (data:any) => {
-         console.log(data);
-         this.close.emit(this.characterName);
-       },
-       error: (error:any) =>{
-         console.log(error);
-       }
-     });
+  async removeCharacter(){
+    await this.db.deleteCharacter(this.characterName);
+    this.close.emit(this.characterName);
   }
     
 }

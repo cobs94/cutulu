@@ -1,8 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { ApiService } from 'src/app/services/api.service';
 import { RouterLink } from '@angular/router';
 import { EditCharacterComponent } from './edit-character/edit-character.component';
 import { CommonModule } from '@angular/common';
+import { DatabaseService } from 'src/app/services/database.service';
 
 @Component({
     imports: [RouterLink, EditCharacterComponent, CommonModule],
@@ -13,26 +13,18 @@ import { CommonModule } from '@angular/common';
 export class ListComponent implements OnInit{
 
   characters?:string[];
-  character?:string;
+  character:string = '';
   showEditCharacter:boolean = false;
   pressTimer: any;
 
-  _httpClient = inject(ApiService);
+  db = inject(DatabaseService);
 
   ngOnInit(): void {
     this.getCharacters();  
   }
 
-  getCharacters(){
-    this._httpClient.getCharactersByUser().subscribe({
-      next: (data:any) => {
-        console.log(data);
-        this.characters = data;
-      },
-      error:(error:any) =>{
-        console.log(error);
-      } 
-    })
+  async getCharacters(){
+    this.characters = await this.db.getCharacterNames();
   }
 
   showEditCharacterFunc(){

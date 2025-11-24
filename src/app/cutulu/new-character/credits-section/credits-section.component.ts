@@ -2,8 +2,8 @@ import { CurrencyPipe } from '@angular/common';
 import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Cash } from 'src/app/models/character.model';
-import { ApiService } from 'src/app/services/api.service';
 import { NewCharacterService } from 'src/app/services/new-character.service';
+import { DatabaseService } from 'src/app/services/database.service';
 
 @Component({
     selector: 'credits-section',
@@ -14,7 +14,8 @@ import { NewCharacterService } from 'src/app/services/new-character.service';
 export class CreditsSectionComponent implements OnInit{
   @Output() changePage = new EventEmitter<number>();
 
-  _httpClient = inject(ApiService);
+  db = inject(DatabaseService);
+
   newCharacterService = inject(NewCharacterService);
   formBuilder = inject(FormBuilder);
 
@@ -30,21 +31,22 @@ export class CreditsSectionComponent implements OnInit{
    })
 
   ngOnInit(): void {
-    this._httpClient.getCredit(this.newCharacterService.getOccupation()).subscribe({
-      next: (data:any) => {
-        this.minCredit = data[0];
-        this.maxCredit = data[1];
-        this.calcCdredit(this.minCredit);
-      },
-      error:(error:any) =>{
-        console.log(error);
-      } 
-    })
+   
+    this.getCredit();
 
     this.creditForm.get('credit')?.valueChanges.subscribe(i => {
       let value = Number(i);
       this.calcCdredit(value);
     });
+  }
+
+  async getCredit(){
+    const result = await  this.db.getOccupationCreditRange(this.newCharacterService.getOccupation());
+
+    this.minCredit = result.minCredit;
+    this.maxCredit = result.maxCredit;
+
+    this.calcCdredit(this.minCredit);
   }
 
   calcCdredit(value:number){

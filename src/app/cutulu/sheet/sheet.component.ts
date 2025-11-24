@@ -3,7 +3,6 @@ import { Component, OnInit, inject, ViewChild, ElementRef, AfterViewInit } from 
 import { ActivatedRoute } from '@angular/router';
 import { Character, Skills, Stats, Weapon } from 'src/app/models/character.model';
 import { SkillsPipePipe } from 'src/app/pipes/skills-pipe.pipe';
-import { ApiService } from 'src/app/services/api.service';
 import { NewCharacterService } from 'src/app/services/new-character.service';
 import { DicesComponent } from './dices/dices.component';
 import { StadisticsCalculatorComponent } from './stadistics-calculator/stadistics-calculator.component';
@@ -15,6 +14,7 @@ import { LevelUpComponent } from './level-up/level-up.component';
 import { TranslatePipe } from 'src/app/pipes/translate.pipe';
 import { HammerModule } from '@angular/platform-browser';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { DatabaseService } from 'src/app/services/database.service';
 
 @Component({
     selector: 'app-sheet',
@@ -70,8 +70,8 @@ export class SheetComponent implements AfterViewInit, OnInit {
   successSkills:string[] = [];
 
   _route = inject(ActivatedRoute);
-  _httpClient = inject(ApiService);
   _breakpointObserver = inject(BreakpointObserver);
+  db = inject(DatabaseService);
   
   constructor( private newCharacterService: NewCharacterService) { }
 
@@ -91,36 +91,32 @@ export class SheetComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit(): void {
-
     this._route.params.subscribe(params => {
-      this._httpClient.getSheetByCharacter(params['character']).subscribe({
-        next : (data:Character) => {
-        this.character = data;
-        this.compareSkills();
-        this.markSkills();
-        console.log(this.character?.successSkills);
-        let stats: Stats = {
-          "currentStats": {
-              "hp": Number(this.character?.stats.currentStats.hp),
-              "mp": Number(this.character?.stats.currentStats.mp),
-              "sanity": Number(this.character?.stats.currentStats.sanity),
-              "luck": Number(this.character?.stats.currentStats.luck)
-            },
-            "maxStats": {
-              "hpMax": Number(this.character?.stats.maxStats.hpMax),
-              "mpMax": Number(this.character?.stats.maxStats.mpMax),
-              "sanityMax": Number(this.character?.stats.maxStats.sanityMax),
-              "luckMax": Number(this.character?.stats.maxStats.luckMax)
-            }
-        }
-    
-        this.newCharacterService.setStats(stats);
-        },
-        error: (error:any) =>{
-          console.log(error);
-        }
-      });
+      this.getSheet(params['character']);
     })
+  }
+
+  async getSheet(character:string){
+    this.character = await this.db.getCharacterByName(character);
+    this.compareSkills();
+    this.markSkills();
+
+    let stats: Stats = {
+      "currentStats": {
+          "hp": Number(this.character?.stats.currentStats.hp),
+          "mp": Number(this.character?.stats.currentStats.mp),
+          "sanity": Number(this.character?.stats.currentStats.sanity),
+          "luck": Number(this.character?.stats.currentStats.luck)
+        },
+        "maxStats": {
+          "hpMax": Number(this.character?.stats.maxStats.hpMax),
+          "mpMax": Number(this.character?.stats.maxStats.mpMax),
+          "sanityMax": Number(this.character?.stats.maxStats.sanityMax),
+          "luckMax": Number(this.character?.stats.maxStats.luckMax)
+        }
+    }
+
+    this.newCharacterService.setStats(stats);
   }
 
   hardThrow(tirada: number): number {
@@ -268,20 +264,14 @@ export class SheetComponent implements AfterViewInit, OnInit {
 
   }
 
-  markSkill($event:Boolean){
+  async markSkill($event:Boolean){
     var checkbox = document.getElementById(this.clickedSkill+'Checkbox') as HTMLInputElement;
     if ($event == true && checkbox && !this.character?.successSkills.includes(this.clickedSkill)) {
       checkbox.checked = true;
       this.character?.successSkills.push(this.clickedSkill);
       this.showDices = false;
-      this._httpClient.editCharacter(this.character?.data.name!, this.character!).subscribe({
-        next : (data:any) => {
-          console.log(data);
-        },
-        error: (error:any) =>{
-          console.log(error);
-        }
-      });
+
+      await this.db.updateCharacter(this.character?.data.name!, this.character!);
     }else{
       this.showDices = false;
     }
@@ -352,15 +342,8 @@ export class SheetComponent implements AfterViewInit, OnInit {
     this.showCalculatorFunc(name, quantity);
   }
 
-  saveCharacter(){
-    this._httpClient.editCharacter(this.character?.data.name!, this.character!).subscribe({
-      next : (data:any) => {
-        console.log(data);
-      },
-      error: (error:any) =>{
-        console.log(error);
-      }
-    });
+  async saveCharacter(){
+    await this.db.updateCharacter(this.character?.data.name!, this.character!);
   }
 
   onSwipeLeft() {
