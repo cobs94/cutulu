@@ -78,8 +78,8 @@ export class DatabaseService extends Dexie {
     return occupations.map(o => o.occupationName);
   }
 
-  async getOccupationSkills(name: string): Promise<string[]> {
-    const occ = await this.occupations.get({ name });
+  async getOccupationSkills(occupationName: string): Promise<string[]> {
+    const occ = await this.occupations.get({ occupationName });
     return occ?.occupationSkills ?? [];
   }
 

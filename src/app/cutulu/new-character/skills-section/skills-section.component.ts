@@ -58,7 +58,8 @@ export class SkillsSectionComponent implements OnInit{
 
   availableTypeSkills:{ [key: string]: string[] } = {};
 
-  ngOnInit(): void {    
+  ngOnInit(): void {  
+    console.log("INIT SKILLS ✔️");  
     this.allSkills['Esquivar'] = Math.floor(Number(this.newCharacterService.getCharacteristics()?.DES)/2);
     
     for (let key in this.allSkills) {
